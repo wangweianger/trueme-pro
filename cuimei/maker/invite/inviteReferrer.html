@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>选择推荐人</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/maker/css/invite/invite.css"/>
+</head>
+<body>
+<header>
+    <div class="m-header g-border-b">
+        <!--<div class="header-left"><a href="javascript:void(0)" onclick="goBack();" class="back"></a></div>-->
+        选择推荐人
+    </div>
+</header>
+<div class="wrapper padding-wrapper-top">
+    <ul class="referrer-list">
+        <li class="g-border-b active"><span>战南北战队</span> <i></i></li>
+        <li class="g-border-b"><span>战南北战队</span> <i></i></li>
+        <li class="g-border-b"><span>战南北战队</span> <i></i></li>
+        <li class="g-border-b"><span>战南北战队</span> <i></i></li>
+    </ul>
+    <div class="container padding-vertical">
+        <p class="referrer-p">注：根据三级分销规则，我们会将您随机分配到一名大咖名下，或者挑选一个您喜欢的名字，和伙伴们一起开始创客之路吧。</p>
+        <button type="button" class="btn btn-main btn-block">确定</button>
+    </div>
+</div>
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+<script type="text/javascript" src="../../assets/common/js/main.js"></script>
+<script>
+    win.hideLoading();
+    $(function () {
+        $(".referrer-list li").click(function () {
+            $(this).addClass("active").siblings().removeClass("active");
+        });
+    })
+</script>
+</body>
+</html>

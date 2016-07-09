@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>订单支付</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <!-- 样式文件 -->
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/trueme/css/order/orderPayment.css?__inline"/>
+    <!-- 内部样式 -->
+</head>
+<body class="bg-cc">
+<div class="container padding-horizontal-0">
+    <div class="orderPayment hide" id="container">
+        <div class="m-header">
+            <!-- <div class="header-left"><a href="javascript:void(0)" v-on:click="cancelOrder()" class="back"></a></div> -->
+            <div class="header-left"><a href="javascript:void(0)" onclick="goBack()" class="back"></a></div>
+            订单支付
+        </div>
+        <div class="top">
+            <div class="time">
+                <div class="t" v-text="createTime | charAt 0"></div>
+                <div class="t" v-text="createTime | charAt 1"></div>
+                <div class="m">:</div>
+                <div class="t" v-text="createTime | charAt 3"></div>
+                <div class="t" v-text="createTime | charAt 4"></div>
+            </div>
+            <div class="clear"></div>
+            <div class="pay30">请在30分钟内支付订单</div>
+        </div> 
+        <div class="center">
+            <div class="tit">
+                <div class="pull-left">支付方式</div>
+                <div class="pull-right">微信支付</div>
+                <span id="slide"></span>
+            </div>
+            <ul class="paylist" id="paylist">
+                <li>
+                    <div class="pull-left"><img src="../../assets/trueme/images/order/wechat_icon.png">微信支付</div>
+                    <div class="checko active"></div>
+                </li>
+            </ul>
+        </div>
+        <div class="bottom">
+            <button class="btn btn-main" v-on:click="payOrderNow" disabled="{{isSubmitPay}}">确认支付</button>
+        </div>
+    </div>
+</div>
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/common/js/main.js"></script>
+<script type="text/javascript" src="../../assets/trueme/js/function/function.js"></script>
+<script type="text/javascript" src="../../assets/common/js/jiami/md5.js"></script>
+<script type="text/javascript" src="../../assets/trueme/js/order/orderPayment.js?__inline"></script>
+<script>
+    //上下滑动
+    $('#slide').click(function(){
+        if($('#paylist').css('display')=='block'){
+            $(this).css({'backgroundImage': 'url('+__uri('/assets/trueme/images/common/arrow_down.png')+')'});
+            $('#paylist').slideUp(config.alimTime);
+        }else{
+            $(this).css({'backgroundImage':'url('+__uri('/assets/trueme/images/common/arrow_up.png')+')'});
+            $('#paylist').slideDown(config.alimTime);
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+/*login.css*/
+body { width: 100%; overflow: hidden; }
+.login { width: 100%; position: relative; height: 750px; overflow: hidden; }
+.login .back { width: 100%; height: 100%; }
+.login .back:after { content: ''; position: fixed; left: 0; right: 0; top: 0; display: block; width: 100%; height: 100%; max-width: 7.5rem; margin: 0 auto; background: rgba(0, 0, 0, .8); z-index: 1; }
+.login .back img { width: 100%; min-height: 100%; }
+.login .icon-text { width: 120px; height: 55px; position: fixed; left: 50%; top: 40%; margin: -55px 0 0 -60px; background: url('../../images/user/icon-text.png') no-repeat center center; z-index: 2; background-size: 100%; }
+.login .signup { position: fixed; width: 100%; max-width: 7.5rem; right: 0; left: 0; margin: 0 auto; bottom: 0.8rem; z-index: 3; }
+.login .signup .btn-green { background: #0bca18; display: block; margin: 0 auto; width: 80%; height: 0.95rem; border-radius: 50px; color: #fff; font-size: .34rem; padding: 0; line-height: 0.9rem; }
+.login .signup .btn-green > img { width: .5rem; height: auto; margin-right: .2rem; }
+.login .signup .phone { width: 80%; margin-left: 10%; margin-top: 0.8rem; }
+.login .signup .phone > a { color: #5f5d5c; }
+.login .signup .phone > a:nth-child(1) { float: left; }
+.login .signup .phone > a:nth-child(2) { float: right; text-decoration: underline; }

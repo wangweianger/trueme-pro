@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>头像</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <!-- 样式文件 -->
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/trueme/css/user/user.css"/>
+    <!-- 内部样式 -->
+</head>
+<body class="bg-cc padding-bottom-xl">
+<div class="wrapper">
+    <div class="m-header">
+        <div class="header-left"><a href="javascript:void(0)" onclick="goBack();" class="back"></a></div>
+        所有照片 <img src="../../assets/images/common/header_down.png" style="width: .4rem">
+    </div>
+    <div class="container">
+        <ul class="photo-list">
+            <li class="photo"><a href="#">拍摄照片</a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+        </ul>
+    </div>
+</div>
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/common/js/main.js"></script>
+<script type="text/javascript" src="../../assets/trueme/js/user/myHome.js"></script>
+<script>
+    $(function () {
+        $(".nickname i").click(function () {
+            $(this).prev("input").val("");
+        })
+    })
+</script>
+</body>
+</html>

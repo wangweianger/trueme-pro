@@ -1,0 +1,23 @@
+.order-nav { width: 100%; height: 1rem; padding: 0 .25rem; line-height: 1rem; background-color: #fff; }
+.order-nav li { display: inline-block; float: left; width: 25%; text-align: center; }
+.order-nav li a { padding: .1rem .2rem; }
+.order-nav li.on a { border-bottom: 3px solid #fb4a4a; }
+.notice { width: 100%; height: .6rem; padding: 0 .25rem 0 .7rem; margin: .2rem 0; line-height: .6rem; background: #fff url("../../images/order/notice.png") no-repeat .25rem center; background-size: .3rem auto; color: #737373; }
+.item { display: none; }
+.item.active { display: block; }
+.item ul li { padding: 0 .25rem; margin-bottom: .2rem; background-color: #fff; }
+.item ul li > div { width: 100%; }
+.item ul li > .title { height: .7rem; line-height: .7rem; color: #737373; font-size: .22rem; }
+.item ul li > .pro-box { width: 100%; height: 1.6rem; padding: .2rem 0; }
+.item ul li > .pro-box .img { float: left; width: 1.1rem; height: 1.1rem; margin-right: .2rem; overflow: hidden; }
+.item ul li > .pro-box .img img { display: block; width: 1.1rem; height: 1.1rem; }
+.item ul li > .pro-box .name { float: left; width: 4.2rem; font-size: .24rem; }
+.item ul li > .pro-box .money { float: right; width: 1.1rem; }
+.item ul li > .account { height: .7rem; line-height: .7rem; text-align: right; font-size: .22rem; }
+.item ul li > .operation { height: 1rem; padding-top: .2rem; text-align: right; }
+.item ul li > .operation .btn { font-size: .22rem; }
+.item ul li > .operation .btn:before { border-color: #737373 }
+.item ul li > .operation .btn-main:before { border-color: #fd4a4a }
+.empty { position: absolute; top: 50%; left: 0; right: 0; bottom: 0; margin-top: -.5rem; width: 7.5rem; height: 2.7rem; }
+.empty img { display: block; width: 1.71rem; height: 1.71rem; margin: 0 auto; }
+.empty p { text-align: center; margin-top: .64rem; font-size: .24rem; color: #4a4a4a; }

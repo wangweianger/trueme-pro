@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>团队收入</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/maker/css/wallet/wallet.css?__inline" />
+</head>
+
+<body class="bg-cc">
+    <header>
+        <div class="m-header g-border-b">
+            <div class="header-left">
+                <a href="javascript:void(0)" onclick="goBack();" class="back"></a>
+            </div>
+            团队收入
+        </div>
+    </header>
+    <div class="wrapper padding-wrapper-top wrappertab" id="container">
+        <div class="title g-border-b ">
+            <h3 class="wartab col-xs-6 g-border-r"><span>今日</span></h3>
+            <h3 class="wartab col-xs-6"><span>更早</span></h3>
+        </div>
+        <!-- datas -->
+        <ul v-show="datas.length" class="tabul income-list hide" id="tabul">
+            <li v-for="item in datas">
+                <div class="list-top g-border-b"><span v-text="'订单号：'+item.orderNo|limitTo 15"></span>
+                    <time class="margin-left" v-text="item.createOrderTime"></time>
+                    <span class="s2" v-text="item.state  | stateFilter"></span></div>
+                <div class="list-con">
+                    <div class="img"><img :src="item.skuImg | qiniuImgFilter 2 150 150"></div>
+                    <div class="con">
+                        <div class="row">
+                            <div class="col-xs-10 text-truncate-2" v-text="item.skuName"></div>
+                            <!-- <div class="col-xs-2">
+                            <small>×</small>
+                            1
+                        </div> -->
+                        </div>
+                        <p><span class="ss1" v-text="item.commisionFee | currency '¥'"></span><span class="ss2" v-text="item.makerOrderState  | makerOrderStateFilter"></span>
+                            <time v-text="item.lastStateTime"></time>
+                        </p>
+                    </div>
+                </div>
+                <div class="list-btn pull-right">
+                    <button :class="{'h':item.orderType==3}" type="button" v-text="item.orderType | orderTypeFilter"></button>
+                </div>
+            </li>
+        </ul>
+        <!-- 数据为空时提示 -->
+        <div v-show="!datas.length" class="text-center common-size"><p>没有相关的数据~</p></div>
+        <!-- 加载更多数据 -->
+        <div class="loading-box hide">
+            <span class="loading-img" v-if="loadingStatus==2"></span>
+            <span class="loading-text" v-text="loadingStatus | loadingStatusFilter"></span>
+        </div>
+        <!-- dom -->
+        <div id="bottomscolltop"></div>
+    </div>
+    <!-- 模板js文件 -->
+    <script type="text/javascript" src="../../assets/common/js/main.js"></script>
+    <script type="text/javascript" src="../../assets/trueme/js/function/function.js"></script>
+    <script type="text/javascript" src="../../assets/maker/js/wallet/walletTeamIncome.js?__inline"></script>
+</body>
+</html>

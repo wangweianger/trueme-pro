@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>首页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+
+<!-- 样式文件 -->
+    <link rel="stylesheet" type="text/css" href="../../assets/trueme/css/main/base.css" /> 
+<!-- 内部样式 -->
+    <style>
+        html{background-color: #f2f2f2;}
+        .search{position:relative; padding:.18rem .38rem; background-color:#fff;}
+        .search input{width:100%; height: .5rem; border: none; background-color: #eee; border-radius:.06rem;}
+        .search .search-text{position: absolute; top: 50%; left: 50%; height: .5rem; line-height:.54rem; font-size: .18rem; color: #8d8d8d; padding-left:.3rem; background: url('../../assets/trueme/images/main/search_icon.png') no-repeat left center; background-size: .25rem .25rem; transform: translate(-50%,-50%); -webkit-transform: translate(-50%,-50%); -moz-transform: translate(-50%,-50%); -o-transform: translate(-50%,-50%); -ms-transform: translate(-50%,-50%);}
+        .nav-box{height:.75rem; line-height:.75rem; overflow: hidden; text-align: center; background-color:#fff;}
+        .nav{display: inline-block;}
+        .nav li{display: inline-block; height: .75rem; margin:0 .32rem; padding:0 .14rem; font-size: .3rem; color: #1b1b1b; box-sizing: border-box;}
+        .nav li.active{border-bottom:.04rem solid red; border-radius:.02rem;}
+        .view-all-outer{padding:.2rem .25rem; overflow: hidden; background-color:#fff;}
+        .view-all{text-align: center; height: .8rem; line-height: .8rem; font-size:.3rem; color:#fff; background-color: #fd4a4a;}
+        .module-list{overflow:hidden;}
+        .module-list > li{margin-top:.2rem;}
+        .module-list > li:first-child{margin-top:0;}
+        .brand-module{overflow: hidden;}
+        .brand-module .module-banner{position:relative; overflow: hidden;}
+        .brand-module .module-banner img{display:block; width:7.5rem; height:2.5rem;}
+        .brand-module .module-banner .module-banner-text{position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color:rgba(0,0,0,0.4);}
+        .module-banner-text p{ text-align:center; font-size: .36rem; font-weight: bold; color:#fff; margin:.7rem .2rem 0; overflow: hidden; text-overflow: ellipsis;}
+        .module-banner-text .module-banner-btn{display: block; margin:0 auto; width:1.38rem; height:.42rem; background-color:rgba(0,0,0,0.6); border:.03rem solid #c6bab2; font-size:.24rem; color:#fff; text-align:center; line-height: .42rem;}
+        .brand-module .brand-list{overflow: hidden;}
+        .brand-module .brand-list > li{float:left;}
+        .brand-module .brand-list > li img{display: block; width: 2.5rem; height:1.8rem;}
+    </style>
+
+<!-- 模板js文件 -->
+    <script type="text/javascript" src="../../assets/common/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../assets/common/js/vue.min.js"></script>
+
+</head>
+<body>
+	<div class="wrapper">
+		<div class="search g-border-b">
+            <input type="text">
+            <span class="search-text">搜索</span>      
+        </div>
+        <div class="nav-box g-border-b">
+            <ul class="nav">
+                <li class="active">商品</li>
+                <li>品牌</li>
+            </ul>
+        </div>
+        <div class="view-all-outer">
+            <div class="view-all">
+                查看全部品牌&nbsp;&gt;
+            </div>
+        </div>
+        <ul class="module-list">
+            <li class="brand-module">
+                <div class="module-banner">
+                    <img src="http://news.hainan.net/Editor/img/201605/20160503/big/20160503194335446_2339660.jpg" alt="" />
+                    <div class="module-banner-text">
+                        <p>让宝宝过得更好</p>
+                        <span class="module-banner-btn">查看全部</span>
+                    </div>
+                </div>
+                <ul class="brand-list">
+                    <li><img src="http://news.hainan.net/Editor/img/201605/20160503/big/20160503194335446_2339660.jpg" alt="" /></li>
+                    <li><img src="http://news.hainan.net/Editor/img/201605/20160503/big/20160503194335446_2339660.jpg" alt="" /></li>
+                    <li><img src="http://news.hainan.net/Editor/img/201605/20160503/big/20160503194335446_2339660.jpg" alt="" /></li>
+                    <li><img src="http://news.hainan.net/Editor/img/201605/20160503/big/20160503194335446_2339660.jpg" alt="" /></li>
+                    <li><img src="http://news.hainan.net/Editor/img/201605/20160503/big/20160503194335446_2339660.jpg" alt="" /></li>
+                    <li><img src="http://news.hainan.net/Editor/img/201605/20160503/big/20160503194335446_2339660.jpg" alt="" /></li>
+                </ul>
+            </li>
+            <li class="brand-module">
+                <div class="module-banner">
+                    <img src="http://news.hainan.net/Editor/img/201605/20160503/big/20160503194335446_2339660.jpg" alt="" />
+                    <div class="module-banner-text">
+                        <p>让宝宝过得更好</p>
+                        <span class="module-banner-btn">查看全部</span>
+                    </div>
+                </div>
+                <ul class="brand-list">
+                    <li><img src="http://news.hainan.net/Editor/img/201605/20160503/big/20160503194335446_2339660.jpg" alt="" /></li>
+                    <li><img src="http://news.hainan.net/Editor/img/201605/20160503/big/20160503194335446_2339660.jpg" alt="" /></li>
+                    <li><img src="http://news.hainan.net/Editor/img/201605/20160503/big/20160503194335446_2339660.jpg" alt="" /></li>
+                    <li><img src="http://news.hainan.net/Editor/img/201605/20160503/big/20160503194335446_2339660.jpg" alt="" /></li>
+                    <li><img src="http://news.hainan.net/Editor/img/201605/20160503/big/20160503194335446_2339660.jpg" alt="" /></li>
+                    <li><img src="http://news.hainan.net/Editor/img/201605/20160503/big/20160503194335446_2339660.jpg" alt="" /></li>
+                </ul>
+            </li>
+        </ul>
+	</div>
+</body>
+</html>

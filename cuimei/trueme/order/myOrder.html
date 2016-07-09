@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>我的订单</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <!-- 样式文件 -->
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/trueme/css/order/myOrder.css?__inline"/>
+    <!-- 内部样式 -->
+    <style>
+        #container{display:none;}
+        .pop-header{margin: -25px -20px 0; padding-bottom: .2rem; height: .7rem; line-height: .7rem; text-align: center; font-size: .32rem; color: rgba(0,0,0,0.8);}
+        .pop-tel{height: 1.8rem; line-height: 1.8rem; margin-bottom: -20px; font-size: .3rem; color: #000;}
+        .contact-tel{display: inline-block; width: .32rem; height: .28rem; background: url('../../assets/trueme/images/order/contact_tel.png') no-repeat 0 0; background-size: cover; vertical-align: top; margin-top: .75rem; margin-right: .1rem;}
+    </style>
+</head>
+<body class="bg-cc">
+<div class="wrapper" id="container">
+    <div class="m-header g-border-b">
+        <div class="header-left"><a href="javascript:void(0)" onclick="goBack()" class="back"></a></div>
+        <a href="../../index.html" class="trueme-home"></a>
+        <button id="appaButShare" class="indexShare hide" onclick="everyPageWeiXinShare({'isnotshareNow':false})"></button>
+        我的订单
+    </div>
+    <ul class="order-nav g-border-b">
+        <li class="on"><a href="javascript:void (0)" data="#item1">全部</a></li>
+        <li><a href="javascript:void (0)" data="#item2">待付款</a></li>
+        <li><a href="javascript:void (0)" data="#item3">待发货</a></li>
+        <li><a href="javascript:void (0)" data="#item4">待收货</a></li>
+    </ul>
+    <div class="order-con">
+        <div class="item active" id="item1">
+            <!-- <div class="notice">关于香港物流的相关信息</div> -->
+            <ul>
+                <li v-for="item in datas.orderList">
+                    <div class="title g-border-b">
+                        <span class="pull-left" v-text="item.orderDate"></span>
+                        <span class="pull-right text-main" v-text="item.orderStatus | orderStatusFilter"></span>
+                    </div>
+                    <div class="pro-box g-border-b" v-for="citem in item.orderDetailDto" v-on:click="orderDetails(item.id)">
+                        <div class="img"><img :src="citem.skuIcon|qiniuImgFilter 2 150 150 " ></div>
+                        <div class="name strong" v-text="citem.skuName"></div>
+                        <div class="money text-right"><span class="strong" v-text="citem.skuPrice | currency '¥'"></span><br><span v-text="'x '+ citem.skuNum"></span></div>
+                    </div>
+                    <div class="account"><span class="padding-right-lg" v-text="'共'+item.totalCount+'件'"></span>应付总额:<span class="text-main" v-text="item.payMoney | currency '¥'"></span></div>
+                    <div class="operation">
+                        <a v-if="item.orderStatus|stateBoolen '2,5' " class="btn btn-default btn-default" v-on:click="showSeller" href="javascript:void(0)">联系客服</a>
+                        <a href="javascript:void (0);" v-if="item.orderStatus|stateBoolen '4,6,7,9' " v-show="item.orderType!=3||item.orderStatus==7" v-on:click="deteleOrder(item.id)" class="btn btn-default">删除订单</a>
+                        <a href="javascript:void (0);" v-if="item.orderStatus|stateBoolen '1,2'" v-show="item.orderType!=3" v-on:click="cancelOrder(item.id)"  class="btn btn-default" >取消订单</a>
+                        <a v-if="item.orderStatus|stateBoolen '1' " href="orderPayment.html?orderId={{item.id}}&payOrderNo={{item.platPayNo}}" class="btn btn-default btn-main badge" >确定付款</a>
+                        <a v-if="item.orderStatus|stateBoolen '3,4,10' " class="btn btn-default" href="checkWuLiu.html?orderId={{item.id}}&orderStatus={{item.orderStatus}}">订单跟踪</a>
+                        <a v-if="item.orderStatus|stateBoolen '3' " v-on:click="confirmReceipt(item.id)" class="btn btn-default" href="javascript:void(0)">确定收货</a>
+                    </div>
+                </li>
+            </ul>
+            <div class="empty" v-show="empty">
+                <img src="../../assets/trueme/images/order/order_empty.png" alt="" />
+                <p>啊哦，您还没有相关的订单~</p>
+            </div>
+        </div>
+    </div>
+    <!-- 加载更多数据 -->
+    <div class="loading-box hide">
+        <span class="loading-img" v-if="loadingStatus==2"></span>
+        <span class="loading-text" v-text="loadingStatus | loadingStatusFilter"></span>
+    </div>
+    <!-- 底部element -->
+    <div id="bottomscolltop"></div>
+</div>
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+<script type="text/javascript" src="../../assets/common/js/main.js"></script>
+<script type="text/javascript" src="../../assets/trueme/js/function/function.js"></script>
+<script type="text/javascript" src="../../assets/trueme/js/order/myOrder.js?__inline"></script>
+</body>
+</html>

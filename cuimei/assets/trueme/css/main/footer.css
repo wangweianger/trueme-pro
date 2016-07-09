@@ -1,0 +1,19 @@
+/*-------------------底部菜单样式----------------------*/
+
+.fixed-bar ul { display: table; width: 100%; font-size: 0; overflow: hidden; }
+.fixed-bar ul li { text-align: center; display: table-cell; zoom: 1; vertical-align: top; font-size: 12px; position: relative }
+.fixed-bar ul li a { font-size: 0.22rem; color: #4a4a4a; display: block; }
+.fixed-bar ul li a img { width: 25px; margin-bottom: 3px }
+.menu { display: inline-block; width: 100%; text-align: center; height: 0.4rem; line-height: 0.2rem; margin-bottom: 0.2rem; }
+.index-sprite { display: inline-block; height: 0.4rem; margin-top: 0.12rem; background: url("/assets/common/images/nav_icon.png") 0 0 no-repeat; background-size: 3rem auto; }
+.sprite-icon_home_1 { width: 0.4rem; background-position: 0 top; }
+.sprite-icon_categ_1 { width: 0.4rem; background-position: -.63rem top; }
+.sprite-icon_guest_1 { width: 0.4rem; background-position: -1.36rem top; }
+.sprite-icon_cart_1 { width: 0.36rem; background-position: -2rem top; }
+.sprite-icon_user_1 { width: 0.36rem; background-position: -2.7rem top; }
+.fixed-bar ul li.active a { color: #fd4a4a; }
+.fixed-bar ul li.active .sprite-icon_home_1 { background-position: 0 bottom; }
+.fixed-bar ul li.active .sprite-icon_categ_1 { background-position: -.63rem bottom; }
+.fixed-bar ul li.active .sprite-icon_guest_1 { background-position: -1.36rem bottom; }
+.fixed-bar ul li.active .sprite-icon_cart_1 { background-position: -2rem bottom; }
+.fixed-bar ul li.active .sprite-icon_user_1 { background-position: -2.7rem bottom; }

@@ -1,0 +1,15 @@
+.wx-user { height: 1.1rem; width: 100%; padding: 0 .2rem; margin-top: .2rem; background: #fff; /*background: #fff url("../../../common/images/arrow_right.png") no-repeat 7.1rem center;*/
+background-size: .2rem; }
+.wx-user i { display: block; float: left; width: .9rem; margin-right: .2rem; height: 1.1rem; line-height: 1; background: url("../../../trueme/images/order/wechat_icon.png") no-repeat center; }
+.wx-user p { margin-top: .2rem; }
+.wx-user span { font-size: .24rem; color: #aaa; }
+.wx-money { height: 1.1rem; width: 100%; padding: 0 .2rem; background-color: #fff; overflow: hidden; }
+.wx-money input { display: inline-block; height: .5rem; border: none; font-size: .4rem; color: #fd4a4a; line-height: .5rem;  line-height: .5rem\0;
+vertical-align: top; margin-top: .35rem; }
+.wx-money span { float: left; line-height: 1.15rem; margin-right: 3px; }
+.wx-money i { display: inline-block; width: .3rem; color: #fd4a4a; font-size: .4rem; float: left; line-height: 1.15rem; }
+.wx-msg { height: 1rem; padding: .15rem .2rem; margin-top: .2rem; background-color: #fff; }
+.wx-msg P { font-size: .24rem; color: #aaa; }
+::-webkit-input-placeholder {
+font-size:0.28rem
+}

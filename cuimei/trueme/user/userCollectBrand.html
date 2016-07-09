@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>收藏的商品</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <!-- 样式文件 -->
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/trueme/css/user/user.css"/>
+</head>
+<body class="bg-cc padding-bottom-xl">
+<div class="wrapper">
+    <div id="container" class="hide">
+        <div class="m-header">
+            <div class="header-left"><a href="javascript:void(0)" onclick="goBack();" class="back"></a></div>
+            收藏的商品
+        </div>
+        <ul class="collect-con">
+            <li v-for="item in list">
+                <a v-bind:href="'../ware/wareDetail.html?spuId=' + item.spuId">
+                    <div class="collect-img">
+                        <img v-bind:src="item.imgMainUrl|qiniuImgFilter 2 350 350" alt="">
+                    </div>
+                    <p class="text-truncate text-center" v-text="item.title"></p>
+                    <p class="text-main text-center" v-text="'¥' + item.salePrice"></p>
+                </a>
+            </li>
+        </ul>
+        <!-- </div> -->
+        <div class="follow-msg no-brand" v-show="noCollect">
+            <div class="follow-msg-box">
+                <p class="margin-bottom-lg">暂无收藏的商品</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/common/js/main.js"></script>
+<script>
+    var vm = new Vue({
+    el: '#container',
+    data: {
+        noCollect: false,
+        list: []
+    },
+    ready: function () {
+        var that = this;
+        $.AJAX({
+            type: "POST",
+            url: config.basePath + '/user/svgoodscollectlist',
+            success: function(o){
+                if(o.data.collectGoodsList && o.data.collectGoodsList != ""){
+                    that.noCollect = false;
+                    that.list = o.data.collectGoodsList;
+                    $('#container').removeClass('hide');
+                }else{
+                    that.noCollect = true;
+                    $('#container').removeClass('hide');
+                }
+            }
+        });
+    },
+    methods: {
+    }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+/*CSS Reset*/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, header, hgroup, nav, section, article, aside, footer, figure, figcaption, menu, button { margin: 0; padding: 0; }
+body { font-family: '微软雅黑', Helvetica, STHeiTi, Sans-serif; line-height: 1.5; font-size: 0.28rem; color: #000; -webkit-text-size-adjust: none; -webkit-tap-highlight-color: rgba(255, 255, 255, 0); outline: 0; }
+h1, h2, h3, h4, h5, h6 { font-size: inherit; font-weight: normal; }
+table { border-collapse: collapse; border-spacing: 0; }
+fieldset, img { border: 0; }
+li { list-style: none; }
+input, textarea, select { font-family: inherit; font-size: inherit; font-weight: inherit; outline: none; -webkit-appearence: none; -ms-appearence: none; }
+button, html input[type="button"], input[type="reset"], input[type="submit"] { border: none; background: none; -webkit-appearance: none; outline: none; }
+a { -webkit-touch-callout: none; text-decoration: none; outline: 0; }
+em, i { font-style: normal; }
+iframe { display: none; }
+::-webkit-input-placeholder {
+    color: #999;
+}
+/*容器限制大小*/
+.wrapper { margin: 0 auto; min-width: 320px; width: 100%; max-width: 7.5rem; }
+.g-border-top { background: url(../images/border-background-h.png) no-repeat left top !important; }
+.g-border-bootom { background: url(../images/border-background-h.png) no-repeat left bottom !important; }
+.g-border-right { background: url(../images/border-background-l.png) no-repeat right top !important; }
+.g-border-left { background: url(../images/border-background-l.png) no-repeat left top !important; }
+.g-border-t { border-top: 1px solid #e0e0e0; }
+.g-border-b { border-bottom: 1px solid #e0e0e0; }
+.g-border-tb { border-top: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0; background-image: none; }
+.g-border-l { border-left: 1px solid #e0e0e0; }
+.g-border-r { border-right: 1px solid #e0e0e0; }
+.g-border { border: 1px solid #e0e0e0; }
+@media screen and (-webkit-min-device-pixel-ratio: 2), screen and (-moz-min-device-pixel-ratio: 2), screen and (-o-min-device-pixel-ratio: 2), screen and (min-device-pixel-ratio: 2) {
+    .g-border { position: relative; border: 0; }
+    .g-border-t, .g-border-b, .g-border-l, .g-border-r, .g-border-tb { border: 0; }
+    .g-border:before { content: ""; width: 200%; height: 200%; position: absolute; top: 0; left: 0; border: 1px solid #e0e0e0; padding: 1px; transform: scale(0.5); transform-origin: 0 0; box-sizing: border-box; -webkit-transform: scale(0.5); -webkit-transform-origin: 0 0; -webkit-box-sizing: border-box; -moz-transform: scale(0.5); -moz-transform-origin: 0 0; -moz-box-sizing: border-box; -o-transform: scale(0.5); -o-transform-origin: 0 0; -o-box-sizing: border-box; }
+    .g-border-t { background-position: left top; background-image: gradient(linear, left bottom, left top, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)); background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)); background-image: -moz-gradient(linear, left bottom, left top, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)); background-image: -o-gradient(linear, left bottom, left top, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)); }
+    .g-border-b { background-position: left bottom; background-image: gradient(linear, left top, left bottom, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)); background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)); background-image: -moz-gradient(linear, left top, left bottom, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)); background-image: -o-gradient(linear, left top, left bottom, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)); }
+    .g-border-t, .g-border-b { background-repeat: repeat-x; background-size: 100% 1px; -webkit-background-size: 100% 1px; -moz-background-size: 100% 1px; -o-background-size: 100% 1px; }
+    .g-border-tb { background: gradient(linear, left bottom, left top, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)) left top repeat-x, gradient(linear, left top, left bottom, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)) left bottom repeat-x; background: -webkit-gradient(linear, left bottom, left top, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)) left top repeat-x, -webkit-gradient(linear, left top, left bottom, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)) left bottom repeat-x; background: -moz-gradient(linear, left bottom, left top, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)) left top repeat-x, -moz-gradient(linear, left top, left bottom, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)) left bottom repeat-x; background: -o-gradient(linear, left bottom, left top, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)) left top repeat-x, -o-gradient(linear, left top, left bottom, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)) left bottom repeat-x; }
+    .g-border-tb { background-size: 100% 1px; -webkit-background-size: 100% 1px; -moz-background-size: 100% 1px; -o-background-size: 100% 1px; }
+    .g-border-l { background-position: left top; background-image: gradient(linear, left top, right top, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)); background-image: -webkit-gradient(linear, left top, right top, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)); background-image: -moz-gradient(linear, left top, right top, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)); background-image: -o-gradient(linear, left top, right top, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)); }
+    .g-border-r { background-position: right top; background-image: gradient(linear, right top, left top, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)); background-image: -webkit-gradient(linear, right top, left top, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)); background-image: -moz-gradient(linear, right top, left top, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)); background-image: -o-gradient(linear, right top, left top, color-stop(0.5, transparent), color-stop(0.5, #e0e0e0), to(#e0e0e0)); }
+    .g-border-l, .g-border-r { background-repeat: repeat-y; background-size: 1px 100%; -webkit-background-size: 1px 100%; -moz-background-size: 1px 100%; -o-background-size: 1px 100%; }
+}
+/*-------------------底部菜单样式----------------------*/
+.fixed-bar-box { position: relative; height: .98rem; }
+.fixed-bar, .header { position: fixed; width: 7.5rem; z-index: 10000; background-color: #fff; }
+.fixed-bar { height: 0.98rem; bottom: 0; background-color: #fff; -webkit-animation: fadeIn .5s linear; -moz-webkit-animation: fadeIn .5s linear; -ms-webkit-animation: fadeIn .5s linear; -o-webkit-animation: fadeIn .5s linear; animation: fadeIn .5s linear; }
+/* 遮罩类 */
+#loading { position: fixed; left: 0; top: 0; width: 100%; height: 100%; z-index: 100001; background: rgba(248, 248, 248, .8) url('../images/loading.gif') no-repeat center center; }
+/*app分享图标*/
+#appaButShare { display: block; position: absolute; right: 0; top: 0; width: .8rem; background: url("../images/fenxiang.png") no-repeat center; background-size: .4rem }
+.indexShare { height: .8rem; }
+.otherShare { height: .88rem; }
+/*公共头部导航*/
+header { position: fixed; top: 0; left: 0; right: 0; width: 100%; max-width: 7.5rem; height: .88rem; margin: 0 auto; z-index: 10000; }
+.header { position: relative; height: .88rem; line-height: .88rem; text-align: center; font-size: .36rem; color: #2c2c2c; background-color: #fff; }
+.header .header-back-box { position: absolute; top: 0; left: 0; width: .88rem; height: .88rem; }
+.header .header-back { position: absolute; top: 0; left: 0; width: .8rem; height: .88rem; background: url('../images/header_back.png') no-repeat center; background-size: .2rem auto; }
+.header .header-edit { position: absolute; top: 0; right: 0; padding: 0 .36rem; font-size: .34rem; }
+.header .header-delete { position: absolute; top: 0; right: 0; bottom: 0; width: .88rem; line-height: .88rem; font-size: .3rem; color: #000; }
+.header .trueme-home, .m-header .trueme-home { position: absolute; top: 0; left: .7rem; width: .8rem; height: .88rem; background: url("../images/index-home.png") no-repeat center; background-size: .4rem auto }
+.header .trueme-home2 { background-image: url("../images/index-home2.png"); }
+/**/
+.m-header { position: relative; line-height: .88rem; text-align: center; font-size: .36rem; color: #2c2c2c; background-color: #fff; z-index: 100; }
+.m-header .header-left, .m-header .header-right { position: absolute; top: 0; width: .8rem; height: .88rem; }
+.m-header .header-left { left: 0; }
+.m-header .header-right { right: 0; }
+.m-header a { display: block; width: 100%; height: 100%; }
+.m-header .header-left .back { background: url("../images/header_back.png") no-repeat center; background-size: .2rem auto }
+.m-header .header-left .back2 { background: url("../images/header_back2.png") no-repeat center; background-size: .2rem auto }
+.m-header .header-left .trueme-home, .m-header .header-right .trueme-home { background: url("../images/index-home.png") no-repeat center; background-size: .4rem auto }
+.m-header .header-right .setting { background-position: -.6rem center; }
+/*分页loading*/
+.loading-box { height: 1rem; line-height: .3rem; text-align: center; font-size: .26rem; color: #aaa; }
+.loading-box .loading-text { position: relative; display: inline-block; vertical-align: top; margin-top: .24rem; }
+.loading-box .loading-img { display: inline-block; padding-left: .4rem; height: .32rem; background: url('../images/loading.gif') no-repeat left center; background-size: .32rem .32rem; margin-top: .24rem; }
+.loading-box .loading-end-line::before { content: ''; position: absolute; top: .15rem; right: 1.4rem; width: 2.74rem; height: 1px; background-color: #e0e0e0; }
+.loading-box .loading-end-line::after { content: ''; position: absolute; top: .15rem; left: 1.4rem; width: 2.74rem; height: 1px; background-color: #e0e0e0; }
+/*长二维码*/
+.cm-ewm { padding: .5rem; }
+.cm-ewm img { width: 100% }

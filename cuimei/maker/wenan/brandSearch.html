@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zn-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>品牌搜索</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no,-scale=1,minimum-scale=1,maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- style -->
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/maker/css/wenan/brandSearch.css?__inline"/>
+    <!-- 模板js文件 -->
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <script type="text/javascript" src="../../assets/common/js/main.js"></script>
+    <script type="text/javascript" src="../../assets/common/js/jquery.scrollTo.min.js"></script>
+    <script type="text/javascript" src="../../assets/trueme/js/function/function.js"></script>
+    <script type="text/javascript" src="../../assets/maker/js/function/function.js"></script>
+</head>
+
+<body>
+    <div class="wrapper" id="container">
+        <div class="search-input">
+            <input type="text" placeholder="搜索全球精选品牌" v-model="searchKeyCur" v-on:input="inputValueChange">
+        </div>
+        <div class="side-nav">
+            <ul class="nav-abc">
+                <li v-for="nav in navList" v-text="nav" v-bind:firstKey="nav" v-on:click="navScroll"></li>
+            </ul>
+        </div>
+        <div class="search-box">
+            <ul v-for="item in resultArr | orderBy 'name' | filterBy searchFirstStr in 'name' " v-bind:id="item.name">
+                <li v-text="item.name"></li>
+                <li v-for="value in item.value | orderBy 'brandNameEn' | filterBy searchKey in 'brandNameCn' 'brandNameEn' " v-bind:brand-id="value.id" v-on:click="jumpResult($event)">
+                    <span v-text="value.brandNameEn"></span>
+                    <span v-text="'(' + value.brandNameCn + ')'"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- footer -->
+    <!-- 底部element -->
+    <link rel="stylesheet" href="../main/footer.html?__inline">
+    <!-- script -->
+    <script type="text/javascript">
+    win.hideLoading();
+    var vm = new Vue({
+        el: '#container',
+        data: {
+            searchKey: '',
+            searchKeyCur: '',
+            navList: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '#'],
+            resultArr: [],
+            searchFirstStr:'',
+        },
+        ready: function() {
+            var that = this;
+            $.AJAX({
+                type: 'GET',
+                url: config.basePath + 'product/svProduct/getAllBrand',
+                success: function(o) {
+                    var keyObj = {};
+                    for(var i=0; i<o.data.brandlist.length; i++){
+                        var keyName = o.data.brandlist[i].brandInitial.toUpperCase();
+                        if(!keyObj[keyName]){
+                            keyObj[keyName] = [];
+                        }
+                        keyObj[keyName].push(o.data.brandlist[i]);
+                    }
+                    $.each(keyObj, function(key, item){
+                        var obj = {};
+                        obj.name = key;
+                        obj.value= item;
+                        that.resultArr.push(obj);
+
+                    });
+                }
+            });
+        },
+        methods: {
+            navScroll: function(e) {
+                var that = this;
+                var targetKey = $(e.target).attr('firstKey');
+                if(targetKey == '#'){
+                    return false;
+                }
+                var totalStr = that.navList.join('');
+                var curTarget = targetKey;
+                if($('#' + targetKey).length == 0){
+                    var index = totalStr.indexOf(targetKey) - 1;
+                    for(var i=index; i>=0; i--){
+                        if($('#' + totalStr.charAt(i)).length > 0){
+                            curTarget = totalStr.charAt(i);
+                            break;
+                        }
+                    }
+                }
+                $.scrollTo(('#' + curTarget), 50, {
+                    offset: -.88 * rem
+                });
+            },
+            jumpResult: function($event){
+                $target = $event.target.nodeName.toUpperCase() == "SPAN" ? $($event.target).parent() : $($event.target);
+                location.href = "wenan.html?brandId=" + $target.attr("brand-id") + '&brandNameEn=' + $target.find('span').eq(0).text() + "#wenanstates=1";
+            },
+            inputValueChange:function(){
+                if(regCombination('c',[0,20]).test(vm.searchKeyCur)){
+                    vm.searchFirstStr="";
+                }else{
+                    vm.searchFirstStr=vm.searchKeyCur.charAt(0);
+                }
+                vm.searchKey=vm.searchKeyCur;
+                Vue.nextTick(function(){
+                    for(var i=0; i< $('.search-box ul').length; i++){
+                        if($('.search-box ul').eq(i).find('li').length == 1){
+                            $('.search-box ul').eq(i).hide();
+                        }else{
+                            $('.search-box ul').eq(i).show();
+                        }
+                    }
+                })
+            }
+        }
+    });
+    </script>
+</body>
+
+</html>

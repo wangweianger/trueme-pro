@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>萃美微信认证</title>
+<link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+</head>
+<body>
+<!-- script -->
+<script type="text/javascript" src="../../assets/common/js/main.js"></script>
+<script type="text/javascript" src="../../assets/trueme/js/function/function.js"></script>
+<script>
+/*微信code*/
+var code=getQueryString('code');
+if(code){
+	$.AJAX({
+		type:'post',
+		url:config.basePath+'user/svWxLogin',
+		data:{
+			code:code,
+			state:sessionStorage.getItem("state-url"),
+		},
+		success:function(data){
+			//获取用户信息 判断是否绑定手机
+			trueme.w.getUserInfor({
+				success:function(data){
+					if(parseInt(data.data.isBindPhone)){
+						//已经绑定手机 跳转到上一页面或者首页
+						window.location.href=config.prevUrl;
+					}else{
+						//没有绑定手机 跳转到绑定手机页面
+						window.location.href=window.location.origin+'/trueme/bindPhone/phoneBinding.html';
+					}
+				}
+			});//end
+		},
+	});
+
+};
+
+
+
+
+</script>
+
+
+</body>
+</html>

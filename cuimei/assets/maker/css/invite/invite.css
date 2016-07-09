@@ -1,0 +1,85 @@
+.invite-body-bg { background: url("../../images/common/H5-bg.png") no-repeat; background-size: cover; }
+.ewm { width: 5.06rem; height: 7.23rem; padding-top: .45rem; margin: 1.5rem auto 1.15rem; background: url("../../images/common/ewm-bg.png") no-repeat; background-size: cover; }
+.ewmapp{background: url("../../images/common/ewm-bg-app.png") no-repeat;background-size: cover;}
+.ewm img { max-width: 4.05rem; }
+.ewm-t { font-size: .34rem; text-align: center; margin-bottom: 1.5rem; }
+.ewm-t i { display: inline-block; width: 1.3rem; height: .35rem; background: url("../../images/index/zyz.png") no-repeat; background-size: cover; vertical-align: middle; }
+.invite-btn { width: 3.6rem; height: .8rem; padding: 0; line-height: .81rem; border-radius: .1rem; background-color: white; color: #fd4a4a; font-size: .3rem; }
+.invite-btn:before { border: none; border-radius: .1rem; }
+.bg-h5 { background: url("../../images/index/bg-h5.png") no-repeat; background-size: cover; }
+.transparent { background-color: transparent; }
+.transparent .back { background: url("../../images/common/back-bei.png") no-repeat center; background-size: .2rem auto; }
+.invite-h5-p { margin-top: 4rem; margin-bottom: .5rem; text-align: center; font-size: .5rem; color: #fff; }
+.invite-h5-btn { font-size: .3rem; border-radius: 1rem; background-color: rgba(255, 255, 255, .2); color: #fff; }
+/*选择推荐人*/
+#inviteReferrer { display: block; }
+.inviteReferrer-bg, .inviteReferrer-box { position: fixed; left: 0; right: 0; max-width: 7.5rem; margin: 0 auto; }
+.inviteReferrer-bg { top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, .8); z-index: 999; }
+.inviteReferrer-box { top: 50%; width: 6rem; max-height: 6.8rem; padding: 0 .4rem 1.1rem; margin-top: -3.4rem; background-color: #fff; border-radius: .1rem; overflow: hidden; z-index: 1000; }
+.inviteReferrer-box h3 { height: .89rem; line-height: .89rem; text-align: center; font-size: .3rem; margin-bottom: .2rem; }
+.inviteReferrer-box ul { max-height: 3.8rem; margin-bottom: .35rem; }
+.inviteReferrer-box ul li { height: 1.2rem; line-height: 1.2rem; overflow: hidden; margin-bottom: .1rem; }
+.inviteReferrer-box ul li:last-child { margin-bottom: 0; }
+.inviteReferrer-box ul li > div { float: left; }
+.inviteReferrer-box ul li > .checked { width: .39rem; height: .39rem; margin-top: .4rem; margin-right: .1rem; background: url("../../../../assets/trueme/images/main/select_icon.png") no-repeat bottom center; background-size: .39rem auto; }
+.inviteReferrer-box ul li.active > .checked { background-position: top center; }
+.inviteReferrer-box ul li > .wx-img img { height: .85rem; width: .85rem; border-radius: 50%; }
+.inviteReferrer-box ul li > .con { position: relative; float: right; height: 100%; width: 3.75rem; line-height: 1; }
+.inviteReferrer-box ul li > .con p { font-size: .24rem; color: #777; padding-top: .05rem; }
+.inviteReferrer-box ul li > .con p.name { padding-top: .15rem; font-size: .26rem; color: #000; }
+.inviteReferrer-box ul li > .con .icon { position: absolute; top: 0; width: .55rem; height: 100%; }
+.inviteReferrer-box ul li > .con .icon a { display: block; width: 100%; height: 100%; }
+.inviteReferrer-box ul li > .con .icon.tel { right: .65rem; background: url("../../../../assets/common/images/tel2.png") no-repeat center; background-size: .32rem auto; }
+.inviteReferrer-box ul li > .con .icon.email { right: 0; background: url("../../../../assets/common/images/email.png") no-repeat center; background-size: .35rem auto; }
+.inviteReferrer-box .hyb { font-size: .3rem; text-align: center; }
+.referrer-list li { height: .89rem; line-height: .89rem; font-size: .3rem; color: #4a4a4a; overflow: hidden; }
+.referrer-list li { padding: 0 .2rem }
+.referrer-list li i { float: right; width: .4rem; height: .4rem; margin-top: .24rem; background: url("../../../trueme/images/main/select_icon.png") no-repeat bottom center; background-size: .4rem auto; vertical-align: top; }
+.referrer-list li.active i { background-position-y: top; }
+.inviteReferrer-box > p, .referrer-p { padding: .04rem 0 .24rem; font-size: .24rem; color: #aaa; }
+.inviteReferrer-box button { position: absolute; bottom: 0; left: 0; width: 100%; height: .89rem; line-height: .89rem; text-align: center; background-color: #fd4a4a; color: #fff; font-size: .28rem; }
+.share { position: fixed; top: 0; left: 0; right: 0; height: 100%; width: 100%; max-width: 7.5rem; margin: 0 auto; background: rgba(0, 0, 0, .8) url("../../../common/images/yuzaishangm.png") no-repeat 2rem .5rem; background-size: 4.88rem auto; z-index: 10000; }
+/*inviteH5*/
+.invite .swiper-wrapper { position: relative; }
+.invite .swiper-wrapper .invite-up { position: absolute; left: 0; right: 0; bottom: 1.2rem; width: 0; height: 0; margin: 0 auto; border-bottom: 10px solid #fff; border-left: 10px solid transparent; border-right: 10px solid transparent; z-index: 100; animation: start 1.5s infinite; -webkit-animation: start 1.5s infinite }
+.invite-bottom { position: fixed; left: 0; bottom: 0; width: 100%; height: 1.1rem; padding: 0 .8rem; line-height: 1.1rem; background-color: rgba(255, 255, 255, .3); color: #010101; z-index: 100 }
+.invite-bottom span{font-size:.3rem;position: absolute;left:.2rem;bottom:0rem;}
+.invite-bottom .btn { width: 1.7rem; margin-top: .23rem; text-align: center; background-color: #e64a4a; vertical-align: top; color: #fff;
+	position: absolute;right: .23rem;bottom: .2rem;
+}
+.invite .swiper-wrapper .invite-bottom .btn:before { border-color: #e64a4a; border-radius: .15rem; }
+.invite .swiper-wrapper .swiper-slide { background-size: cover; background-position: center; background-repeat: no-repeat; }
+@-webkit-keyframes start {
+ 0% {
+ opacity: 0;
+ -webkit-transform: translateY(15px);
+ transform: translateY(15px);
+}
+ 50% {
+ opacity: 1;
+ -webkit-transform: translateY(0);
+ transform: translateY(0);
+}
+ 100% {
+ opacity: 0;
+ -webkit-transform: translateY(-15px);
+ transform: translateY(-15px);
+}
+}
+@keyframes start {
+ 0% {
+ opacity: 0;
+ -webkit-transform: translateY(15px);
+ transform: translateY(15px);
+}
+ 50% {
+ opacity: 1;
+ -webkit-transform: translateY(0);
+ transform: translateY(0);
+}
+ 100% {
+ opacity: 0;
+ -webkit-transform: translateY(-15px);
+ transform: translateY(-15px);
+}
+}

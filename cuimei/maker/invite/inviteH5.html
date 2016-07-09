@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>创客邀请</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/swiper-3.3.1.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/maker/css/invite/invite.css?__inline"/>
+    <style>
+        html, body { width: 100%; height: 100%; overflow-y: hidden; position: relative; }
+        .wrapper { position: relative; height: 100%; overflow-y: hidden; }
+        .swiper-container { width: 100%; height: 100%; }
+        /*libao-box*/
+        .libao-box .libao-con{width: 100%; height: 90%;}
+        .libao-box .box-bg, .libao-box .box { position: fixed; top: 0; left: 0; right: 0; height: 100%; margin: 0 auto; }
+        .libao-box .box-bg { width: 100%; background-color: rgba(0, 0, 0, .8); z-index: 1000 }
+        .libao-box .box { width: 100%; padding: .32rem 0 2%; z-index: 1002; }
+        .libao-box .box .box-text { font-size: .3rem; color: #fff; text-align: center; }
+        .libao-box .box .box-slide-tip{font-size: .22rem; color: #ccc; text-align: center; margin-top: .12rem;}
+        .libao-box .swiper-slide{text-align: center;}
+        .libao-box .swiper-slide .libao {position: relative; display: inline-block; height: 90%; margin: .16rem auto 0; background-color: #fff; border-radius: .12rem; overflow: hidden;}
+        .libao-box .swiper-slide .libao img{display: block; height: 100%; max-width: 7rem; margin: 0 auto;}
+        .libao-box .swiper-slide .close { position: absolute; top: 0; right: 0; width: .7rem; height: .7rem; background: url("../../assets/common/images/PopLayer-close.png") no-repeat center; }
+        .libao-box .swiper-slide .check-btn { position: absolute; bottom: .25rem; left: 0; right: 0; width: 2.9rem; height: .7rem; margin: 0 auto; line-height: .72rem; text-align: center; background-color: #fd4a4a; color: #fff; font-size: .24rem; }
+        .libao-box .swiper-pagination-bullet { background-color: #fdfdfd; }
+        .libao-box .swiper-pagination-bullet-active { background-color: #fff; }
+        .libao-box .swiper-container-horizontal > .swiper-pagination-bullets{bottom: .3rem; transform: none; -webkit-transform: none; transition: none; -webkit-transition: none;}
+        .m-header {background-color:transparent; }
+        .m-header a {
+            background: url("/assets/maker/images/common/back-bei.png") no-repeat center;
+            background-size: .2rem auto;
+        }
+    </style>
+</head>
+<body id="container">
+<header v-if="isIosWebviewApp">
+    <div class="m-header g-border-b">
+        <div class="header-left"><a href="javascript:void(0)" onclick="goBack('/index.html');" class="back"></a></div>
+    </div>
+</header>
+<div class="wrapper" >
+    <!-- Swiper -->
+    <div class="swiper-container invite">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide s1" style="background-image: url('../../assets/maker/images/invite/h7.png')">
+                <div class="invite-up"><span></span></div>
+            </div>
+            <div class="swiper-slide s2" style="background-image: url('../../assets/maker/images/invite/h6.png')">
+                <div class="invite-up"><span></span></div>
+            </div>
+            <div class="swiper-slide s3" style="background-image: url('../../assets/maker/images/invite/h5.png')">
+                <div class="invite-up"><span></span></div>
+            </div>
+            <div class="swiper-slide s4" style="background-image: url('../../assets/maker/images/invite/h4.png')">
+                <div class="invite-up"><span></span></div>
+            </div>
+            <div class="swiper-slide s5" style="background-image: url('../../assets/maker/images/invite/h3.png')">
+                <div class="invite-up"><span></span></div>
+            </div>
+            <div class="swiper-slide s6" style="background-image: url('../../assets/maker/images/invite/h2.png')">
+                <div class="invite-up"><span></span></div>
+            </div>
+            <div class="swiper-slide s7" style="background-image: url('../../assets/maker/images/invite/h1.png')"></div>
+        </div>
+    </div>
+    <div class="invite-bottom"><span>礼包价：{{spuIdprice|currency '¥'}}</span>
+        <button v-on:click="buyAGift" class="btn" id="buy_maker">申请创客</button>
+    </div>
+    <div class="libao-box hide">
+        <div class="box-bg"></div>
+        <div class="box">
+            <p class="box-text">我们为创客准备了惊喜礼包，<br>请选择您喜欢的一款免费带回家</p>
+            <div class="box-slide-tip" v-show="getPullNewSkuList.length > 1">请左右滑动选择</div>
+            <div class="swiper-container libao-con">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" v-for="item in getPullNewSkuList">
+                        <div class="libao">
+                            <img v-bind:src="item.imgMainUrl" />
+                            <div class="close"></div>
+                            <a class="check-btn" href="/trueme/ware/wareDetail.html?spuId={{item.spuId}}">查看礼包</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination" v-show="getPullNewSkuList.length > 1"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+<script type="text/javascript" src="../../assets/common/js/main.js"></script>
+<script type="text/javascript" src="../../assets/common/js/swiper-3.3.1.jquery.min.js"></script>
+<script type="text/javascript" src="../../assets/maker/js/invite/inviteH5.js?__inline"></script>
+</body>
+</html>

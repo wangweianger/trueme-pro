@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>创客邀请</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/maker/css/invite/invite.css?__inline"/>
+    <style>
+        .m-header {background-color:transparent; }
+        .m-header a {
+            background: url("/assets/maker/images/common/back-bei.png") no-repeat center;
+            background-size: .2rem auto;
+        }
+    </style>
+</head>
+<body class="invite-body-bg hide" id="container">
+<header v-if="isIosWebviewApp">
+    <div class="m-header g-border-b">
+        <div class="header-left"><a href="javascript:void(0)" onclick="goBack();" class="back"></a></div>
+    </div>
+</header>
+<div class="wrapper" >
+    <div class="text-center ewm" :class="{'ewmapp':isIosWebviewApp?true:false}">
+        <div class="hide" id="output"></div>
+        <img id="canvas-img">
+    </div>
+    <!--<p class="ewm-t">点击“<i></i>”识别二维码</p>-->
+    <p class="text-center">
+        <a href="javascript:void(0)" id="shareChuangKe" class="btn invite-btn">发送链接邀请创客</a>
+    </p>
+</div>
+<!-- 分享图标 -->
+<div id="weixinShare" class="share hide"></div>
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+<script type="text/javascript" src="../../assets/common/js/main.js"></script>
+<script type="text/javascript" src="../../assets/common/js/jquery.qrcode.min.js"></script>
+<script type="text/javascript" src="../../assets/maker/js/invite/invite.js?__inline"></script>
+</body>
+</html>

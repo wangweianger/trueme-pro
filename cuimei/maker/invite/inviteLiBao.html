@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>创客礼包</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <style type="text/css">
+        .liBao-bg { background: url("../../assets/maker/images/common/maker-bg.png") no-repeat; background-size: cover }
+        .liBao-ul { overflow: hidden; margin-top: 5.4rem; padding: 0 .2rem }
+        .liBao-ul li:nth-child(odd) { float: left }
+        .liBao-ul li:nth-child(even) { float: right }
+        .liBao-ul li { width: 3.45rem; height: 4.8rem; margin-bottom: .2rem; background-color: rgba(255, 255, 255, .35); border-radius: .1rem; }
+        .liBao-ul li .img { width: 100%; height: 2.2rem; overflow: hidden; text-align: center; }
+        .liBao-ul li .img img { width: 2.41rem; margin-top: .2rem }
+        .liBao-ul li p { padding: .1rem .4rem 0; line-height: 1.5; text-align: center; color: #fff; font-size: .3rem; overflow: hidden }
+        .liBao-ul li p.p1 { height: 1rem }
+        .liBao-ul li p del { font-size: .26rem }
+        .liBao-ul li>a { display: block; width: 2.42rem; height: .74rem; margin: .1rem auto; line-height: .74rem; text-align: center; background-color: #fd4a4a; color: #fff; border-radius: 1rem; font-size: .3rem; }
+    </style>
+</head>
+<body class="liBao-bg">
+<div class="wrapper" id="container">
+    <ul class="liBao-ul">
+        <li v-for="item in datas.getPullNewSkuList">
+            <div class="img"><a href="/trueme/ware/wareDetail.html?spuId={{item.spuId}}"><img :src="item.imgMainUrl | qiniuImgFilter 2 250 250"></a></div>
+            <p class="p1"><span v-text="item.skuTitle|limitTo 20"></span></p>
+            <p>
+                <span class="text-main text-34" v-text="item.salePrice | currency '¥'"></span>
+                <del v-text="item.markedPrice | currency '¥'"></del>
+            </p>
+            <a href="javascript:void(0)" v-on:click="submitShopNow(item.skuId,item.salePrice)">选择{{item.skuDesc}}</a>
+        </li>
+    </ul>
+</div>
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+<script type="text/javascript" src="../../assets/common/js/main.js"></script>
+<script type="text/javascript" src="../../assets/maker/js/invite/inviteLiBao.js?__inline"></script>
+</body>
+</html>

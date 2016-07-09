@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zn-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>我的文案</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <!-- style -->
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/maker/css/wenan/wenan.css?__inline"/>
+    <!-- 模板js文件 -->
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <script type="text/javascript" src="../../assets/common/js/main.js"></script>
+    <script type="text/javascript" src="../../assets/trueme/js/function/function.js"></script>
+    <script type="text/javascript" src="../../assets/maker/js/function/function.js"></script>
+</head>
+<body class="bg-cc">
+<!-- <header>
+    <div class="m-header g-border-b">
+        <div class="header-left"><a href="javascript:void(0)" onclick="goBack();" class="back"></a></div>
+        <div class="header-cart">
+            <a class="header-icon header-cart-icon" href="/trueme/cart/cart_new.html"></a>
+        </div>
+        <button id="appaButShare" class="indexShare hide" onclick="everyPageWeiXinShare({'isnotshareNow':false})"></button>
+        我的文案
+    </div>
+</header> -->
+<div class="wrapper wenan hide" id="container">
+    <div class="fixTop">
+        <div class="top">
+            <ul id="wenanTanNav">
+                <li class="active"><a href="wenan.html#wenanstates=0"><span>热门文案</span></a></li>
+                <li><a href="wenan.html#wenanstates=1"><span>热销商品</span></a></li>
+                <li><a href="wenan.html#wenanstates=2"><span>收藏文案</span></a></li>
+                <li><a href="wenan.html#wenanstates=3"><span>分享文案</span></a></li>
+            </ul>
+        </div>
+        <div class="search-input-outer" v-show="index==1">
+            <div class="search-input">
+                <div class="input-close" id="input_close" v-show="searchKeyWord" v-on:click="resetHotPro"></div>
+                <form method="post" id="form" action="#">
+                    <input type="text" id="search" placeholder="搜索全球精选商品" v-model="searchKeyWord" v-on:focus="focusEvent" v-on:blur="blurEvent" />
+                </form>
+                <a href="brandSearch.html">更多</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <!--热销单品-->
+        <div v-bind:class="['hot-products', index==1 ? 'hot-has-padding' : '']">
+            <ul>
+                <li class="g-border-b" v-if="index==1" v-for="item in datas.contentList">
+                    <a href="javascript:void(0)" v-on:click="shareIdHotGoods(item.spuId)" class="left-img">
+                        <img class="lazy" src="/assets/common/images/gods-default-icon.png" data-original="{{item.imgMainUrl|qiniuImgFilter 2 180 180}}">
+                        <!-- <span v-if="item.skuType==2" v-text="'分销'"></span> -->
+                    </a>
+                    <div class="right-con">
+                        <a href="javascript:void(0)" v-on:click="shareIdHotGoods(item.spuId)" class="right-con-title" v-text="item.skuTitle|limitTo 40"></a>
+                        <div class="money text-main">
+                            <span v-text="item.salePrice | currency '¥'"></span>
+                            <del v-text="item.markedPrice | currency '¥'"></del>
+                        </div>
+                        <div class="yj">佣金: <span class="text-main" v-text="item.commission | currency '¥'"></span>
+                            <span class="sl" v-text="'销售数量：'+item.saleCount+'件'"></span>
+                        </div>
+                        <a href="javascript:void(0)" v-on:click="shareHotGoods(item.spuId,item.imgMainUrl+'?imageView2/1/w/160/h/160',item.skuTitle,item.slogan)" class="hp-share"><i></i>分享</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- 文案列表 -->
+        <div v-if="index!=1" v-for="item in datas.contentList">
+            <!--视频-->
+            <div v-if="item.contentType==2" class="video">
+                <video class="hide" style="background-image:url('{{item.mainUrl}}');" :src="item.vedioUrl" controls="false" loop="true" preload="false" webkit-playsinline="" x-webkit-airplay="allow"></video>
+                <div class="blur"></div>
+                <div class="video-con">
+                    <div class="video-con-z">
+                        <a href="/maker/wenan/wenAnDetails.html?contentId={{item.contentId}}">
+                            <div class="video-con-t g-border-b">
+                                <h1 v-text="item.title|limitTo 18"></h1>
+                                <h5 v-text="item.desc|limitTo 40"></h5>
+                            </div>
+                        </a>
+                        <div class="video-con-b">
+                            <!-- <span class="comment">10</span> -->
+                            <span class="zan" v-on:click="likeElectricity($index,item.contentId)" v-text="item.likeCount"></span>
+                            <span class="xin" :class="{'active':item.collect?true:false}" v-on:click="collectionwenan($index,item.contentId)" v-text="item.collectCount"></span>
+                            <span class="zhuangfa" v-on:click="getShareIdWenAnDetails(item.contentId,item.mainUrl+'?imageView2/1/w/160/h/160',item.title,item.desc)"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-mainimg">
+                    <a href="/maker/wenan/wenAnDetails.html?contentId={{item.contentId}}"><div class="masker"></div></a>
+                    <img :src="item.mainUrl"/>
+                    <div class="playIcon" v-on:click="videoAboutCaoZuo($event,item.mainUrl)"></div>
+                </div>
+            </div>
+            <!-- 图文 -->
+            <div class="wenan-list show" v-if="item.contentType!=2">
+                <div class="top">
+                    <div class="bianji">
+                        <span>编辑精选</span>
+                        <div class="shouchang btn btn-main badge" v-if="index!=3" v-on:click="collectionwenan($index,item.contentId)">
+                            <span style="color:#fd4a4a" v-if="item.collect==0">+收藏</span>
+                            <span style="color:#fd4a4a" v-if="item.collect==1">已收藏</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 主图 -->
+                <a href="javascript:void(0)" v-on:click="geShareIdForA(item.contentId)">
+                    <div class="center">
+                        <img class="lazy" src="/assets/common/images/gods-default-icon.png" data-original="{{item.mainUrl|qiniuImgFilter}}">
+                        <!-- <img :src="item.mainUrl|qiniuImgFilter"> -->
+                    </div>
+                    <div class="wenan-miao-shu">
+                        <p class="wenan-p" v-text="item.title |limitTo 18"></p>
+                        <p class="wenan-p" v-text="item.desc|limitTo 40"></p>
+                    </div>
+                </a>
+                <!-- 收藏文案/热门文案 -->
+                <div v-if="index|stateBoolen '0,2' ">
+                    <p class="wenan-fy">最高分佣：<span class="text-main strong" v-text="item.maxReward | currency '¥'"></span> （共{{item.productCount}}件商品）</p>
+                    <p class="wenan-fy">历史累计分佣：
+                        <span class="text-main" v-text="item.sumReward | currency '¥'"></span>
+                        <span class="fx" v-on:click="getShareIdWenAnDetails(item.contentId,item.mainUrl+'?imageView2/1/w/160/h/160',item.title,item.desc)">分享</span>
+                        <span class="can" v-text="item.likeCount" v-on:click="likeElectricity($index,item.contentId)"></span>
+                    </p>
+                </div>
+                <!-- 我分享的文案 -->
+                <div v-if="index|stateBoolen '3' ">
+                    <p class="wenan-fy">分享时间：<span v-text="item.shareTime | Data true"></span><span class="fx1" v-text="item.readCount"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 数据为空时提示 -->
+        <div v-if="!datas.contentList.length" class="text-center common-size">
+            <p>没有相关的数据~</p>
+        </div>
+        <!-- 加载更多数据 -->
+        <div class="loading-box hide" v-show="datas.contentList.length">
+            <span class="loading-img" v-if="loadingStatus==2"></span>
+            <span class="loading-text" v-text="loadingStatus | loadingStatusFilter"></span>
+        </div>
+    </div>
+</div>
+<!-- 分享图标 -->
+<div id="weixinShare" style="z-index:10001" class="share hide"></div>
+<!-- footer -->
+<!-- 底部element -->
+<div id='bottomscolltop'></div>
+<link rel="stylesheet" href="../main/footer.html?__inline">
+<!-- script -->
+<script type="text/javascript" src="../../assets/maker/js/wenan/wenan.js?__inline"></script>
+
+</body>
+</html>

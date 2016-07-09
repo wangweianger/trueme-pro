@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>活动收入</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/maker/css/wallet/wallet.css?__inline"/>
+    <style>
+        .active-list li { height: 1rem; line-height: 1rem; padding: 0 0.2rem; }
+        .active-list h1 { font-size: 0.3rem; float: left; margin-right: .2rem; }
+        .active-list span:nth-child(2) { font-size: 0.35rem; color: #fd4a4a; float: left; }
+        .active-list span:nth-child(3) { font-size: 0.25rem; color: #aaa; float: right; line-height: 1rem; }
+    </style>
+</head>
+<body class="bg-cc">
+<header>
+    <div class="m-header g-border-b">
+        <div class="header-left"><a href="javascript:void(0)" onclick="goBack();" class="back"></a></div>
+        活动收入
+    </div>
+</header>
+<div class="wrapper padding-wrapper-top" id="container">
+    <ul v-if="todayDatas.length" class="income-list active-list hide" id="record1">
+        <li v-for="item in todayDatas">
+           <h1 v-text="item.remark"></h1>
+           <span v-text="item.money | currency '¥'"></span>
+           <span v-text="item.createTime"></span>
+        </li>
+    </ul>
+    <!-- 数据为空时提示 -->
+    <div v-if="!todayDatas.length" class="text-center common-size"><p>没有相关的数据~</p></div>
+    <!-- 加载更多数据 -->
+    <div class="loading-box hide">
+        <span class="loading-img" v-if="loadingStatus==2"></span>
+        <span class="loading-text" v-text="loadingStatus | loadingStatusFilter"></span>
+    </div>
+    <!-- 底部element -->
+    <div id="bottomscolltop"></div>
+</div>
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/common/js/main.js"></script>
+<script type="text/javascript" src="../../assets/trueme/js/function/function.js"></script>
+<script type="text/javascript" src="../../assets/maker/js/wallet/walletActiveIncome.js?__inline"></script>
+</body>
+</html>

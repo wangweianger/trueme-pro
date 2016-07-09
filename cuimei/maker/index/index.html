@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>创客</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <!-- style -->
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/maker/css/index/index.css?__inline"/>
+    <style>
+        .top-box i {position: absolute;top: .2rem;right: .2rem; padding-left: .4rem; color: #aaa; font-size: .22rem;background: url("/assets/maker/images/team/icon1.png") no-repeat left 20%; background-size: .3rem;}
+        .popup .maker{font-size:0.3rem;}
+        .popup .maker span{font-size:.2rem;color:#747474;}
+    </style>
+    <!-- 模板js文件 -->
+    <script type="text/javascript" src="../../assets/common/js/main.js"></script>
+</head>
+<body class="bg-cc padding-bottom-xl">
+    <header>
+        <div class="m-header">
+            <div class="header-left"><a href="javascript:void(0)" onclick="goBack('/index.html');" class="back2"></a></div>
+        </div>
+    </header>
+    <div class="hide" id="container">
+        <div class="wrapper" id="index-main">
+            <div class="user-box">
+                <div class="top-box" v-if="datas.masterId"><i v-text="'直属导师：'+datas.masterName"></i></div>
+                <div class="user-img">
+                    <img :src="datas.userPhoto|qiniuImgFilter 2 150 150 ">
+                    <!--<span v-text="datas.makerLevel"></span>-->
+                </div>
+                <div class="name"><span v-text="datas.makerLevel | makerDeji"></span></div>
+                <div class="text-white" v-text="datas.nickeName"></div>
+                <a class="grade" id="grade" href="javascript:void (0);"><img src="../../assets/maker/images/index/icon-gth.png"> 离升级还需{{datas.nextLevelNeed}}人</a>
+            </div>
+            <div class="data-box">
+                <dl class="g-border-b">
+                    <dt>今日销售额</dt>
+                    <dd class="text-main" v-text="datas.todaySaleFee | currency '¥'"></dd>
+                    <dd class="g-border-r"></dd>
+                </dl>
+                <dl class="g-border-b">
+                    <dt>今日订单数</dt>
+                    <dd class="text-main" v-text="datas.todayOrderCount"></dd>
+                </dl>
+                <dl class="g-border-b">
+                    <dt>今日团队佣金</dt>
+                    <dd class="text-main" v-text="datas.todayTeamFee | currency '¥'"></dd>
+                    <dd class="g-border-r"></dd>
+                </dl>
+                <dl class="g-border-b">
+                    <dt>今日个人佣金</dt>
+                    <dd class="text-main" v-text="datas.todayCommisionFee | currency '¥'"></dd>
+                </dl>
+            </div>
+            <div class="clear"></div>
+            <ul class="nav-box">
+                <li class="g-border-r"><a href="../invite/invite.html">邀请创客</a></li>
+                <li class="g-border-r"><a href="../wallet/wallet.html">我的钱包</a></li>
+                <li><a href="../wallet/withdrawCash.html">申请提现</a></li>
+            </ul>
+        </div>
+        <div class="grade-box">
+            <div class="grade-bg"></div>
+            <div class="grade-box-t">
+                <p class="p1">我的等级：<span class="text-main" v-text="datas.makerLevel | makerDeji"></span></p>
+                <p>人数：<span class="text-main" v-text="datas.teamCount"></span></p>
+            </div>
+            <ul class="grade-box-h">
+                <li>
+                    <div class="col-xs-3">星级</div>
+                    <div class="col-xs-3">所需人数</div>
+                    <div class="col-xs-3">直推收入(元)</div>
+                    <div class="col-xs-3">间推收入(元)</div>
+                </li>
+                <li v-for="item in datas.levelRule">
+                    <div class="col-xs-3"><button v-text="item.ruleName"></button></div>
+                    <div class="col-xs-3"><span v-text="item.ruleVal"></span></div>
+                    <div class="col-xs-3" v-text="item.directIncome"></div>
+                    <div class="col-xs-3" v-text="item.indirectIncome"></div>
+                </li>
+                <!--<li v-for="item in datas.levelRule"><button v-text="item.ruleName"></button><span v-text="'所需人数：'+item.ruleVal"></span></li>-->
+            </ul>
+        </div>
+        <!-- footer -->
+        <link rel="stylesheet" href="../main/footer.html?__inline">
+    </div>
+<!-- script -->
+<script type="text/javascript" src="../../assets/maker/js/index/index.js?__inline"></script>
+</body>
+</html>

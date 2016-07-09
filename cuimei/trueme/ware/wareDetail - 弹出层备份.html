@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>商品详情</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <!-- 样式文件 -->
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/swiper-3.3.1.min.css"/>
+    <link rel="stylesheet" href="../../assets/trueme/css/ware/wareDetail.css?__inline">
+    <!-- script -->
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <script type="text/javascript" src="../../assets/common/js/main.js"></script>
+    <!-- 模板js文件 -->
+    <script type="text/javascript" src="../../assets/common/js/T.js"></script>
+    <script type="text/javascript" src="../../assets/common/js/swiper-3.3.1.jquery.min.js"></script>
+    <script src="../../assets/trueme/js/ware/wareDetail.js?__inline"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div id="container">
+        <div class="header">
+            <div class="header-back">
+                <span class="header-icon back-arrow"></span>
+            </div>
+            <div class="header-cart">
+                <span class="header-icon header-cart-icon"></span>
+            </div>
+            <div class="header-set">
+                <span class="header-icon header-set-icon"></span>
+            </div>
+        </div>
+        <div>
+            <!-- banner -->
+            <div class="banner swiper-container" id="bannerlist">
+                <div class="swiper-wrapper">
+                    <div v-for="item in banner" class="swiper-slide">
+                        <img v-bind:src="item.imgMainUrl"/>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <div id="supMain">
+                <!-- 商品主信息 -->
+                <div class="good-main" id="spuDetails">
+                    <h3 class="name" v-text="spuDetailList.spuDetailInfo.title">令牌翅膀报白哦</h3>
+                    <p class="des" v-text="spuDetailList.spuDetailInfo.slogan">【佛法金额分开无法可谓】打我打五分达瓦达瓦达瓦达瓦</p>
+                    <div class="price"><span class="now-price">&yen;209.00</span><span class="old-price">&yen;540.39</span></div>
+                    <div class="sell-info g-border-tb">
+                        <div class="praise-info "><span class="praise-info-text">好评率--(0人)</span></div>
+                        <span class="sell-num" v-text="'销量'+spuDetailList.spuDetailInfo.saleCount+'件'"></span>
+                        <span class="store-num" v-text="spuTotalList.">收藏745人</span>
+                        <span class="postage">运费：包邮</span>
+                    </div>
+                    <div class="tags">
+                        <span>7天退货</span>
+                        <span>退货补贴</span>
+                        <span>先行赔付</span>
+                    </div>
+                </div>
+                <!-- 弹出层 -->
+                <div class="shopCart-box">
+                    <div class="masked"></div>
+                    <div class="shopCart-con">
+                        <div class="money padding-horizontal g-border-b">
+                            <div class="pull-left"><span class="text-main">¥180.00</span>（库存充足）</div>
+                            <a href="javascript:void (0)" id="close_box" class="pull-right"></a>
+                        </div>
+                        <div class="color-z">
+                            <div class="color-hd padding-horizontal g-border-b">
+                                <div class="pull-left">规格</div>
+                                <div class="pull-right text-main">请选择 <i></i></div>
+                            </div>
+                            <div class="color-bd padding-horizontal g-border-b">
+                                <!-- <div class="color-bd-t g-border-b">
+                                    <div class="img"><img src="../../assets/trueme/images/order/pro.png" alt="商品"></div>
+                                    <div class="right"><span class="text-main">¥180.00</span>（库存充足）<br><span class="text-737373">请选择颜色、尺码</span></div>
+                                </div> -->
+                                <div class="color-bd-c padding-vertical g-border-b">
+                                    <!-- <p class="text-737373">颜色</p> -->
+                                    <ul>
+                                        <li class="checked">黑色</li>
+                                        <li>黑色</li>
+                                        <li>黑色</li>
+                                        <li>黑色</li>
+                                        <li>黑色</li>
+                                    </ul>
+                                </div>
+                               <!--  <div class="color-bd-c padding-vertical g-border-b">
+                                    <p class="text-737373">尺码</p>
+                                    <ul>
+                                        <li class="checked">M</li>
+                                        <li>S</li>
+                                        <li>L</li>
+                                        <li>XL</li>
+                                        <li>XXL</li>
+                                    </ul>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="num padding-horizontal g-border-b">
+                            <div class="pull-left">数量</div>
+                            <div class="pull-right">
+                                <span class="left">-</span>
+                                <input type="number" value="2">
+                                <span class="right">+</span>
+                            </div>
+                        </div>
+                       <!--  <div class="color-z">
+                            <div class="color-hd padding-horizontal g-border-b">
+                                <div class="pull-left">海关税费</div>
+                                <div class="pull-right text-main"><i></i></div>
+                            </div>
+                            <div class="color-bd padding-horizontal">
+                                <div class="money g-border-b">¥0.00</div>
+                                <p class="text-737373 padding-vertical text-justify">海外仓发货商品需向中国海关申报及纳税，若配送期间产生税费，需 要您携带身份证件前往当地海关缴纳。凭交税凭证可联系客服报销。</p>
+                            </div>
+                        </div> -->
+                        <button class="box-btn">确 定</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 商品详情 -->
+            <div class="detail" id="detailsList">
+                <h3>商品详情</h3>
+                <div class="detail-img" v-for="item1 in spuDetail">
+                    <img :src="item1.detailImage"/>
+                </div>
+            </div>
+        </div>
+        <div class="see-more">
+            <h3>看了又看</h3>
+             <!-- hot 看了又看 -->
+            <link rel="import" href="../main/getHotSaleList.html?__inline">
+        </div>
+        <!-- 底部导航 -->
+        <div class="too-bar">
+            <div class="too-wrap g-border-t">
+                <div class="store-btn"><span class="store-icon"></span>
+                    <p class="store-text">收藏</p></div>
+                <div class="too-btn">
+                    <div class="add-btn">加入购物车</div>
+                    <div class="buy-btn">立即购买</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+</body>
+</html>

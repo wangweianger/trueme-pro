@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>手机号绑定</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <!-- 样式文件 -->
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/trueme/css/bindPhone/phoneBinding.css?__inline"/>
+    <!-- 内部样式 -->
+</head>
+<body class="bg-cc">
+<div class="container padding-horizontal-0">
+    <div id="container" class="phone-binding">
+        <div class="m-header g-border-b">
+            <div class="header-left"><a href="javascript:void(0)" v-on:click="goback" class="back"></a></div>
+            手机号绑定
+            <a v-if="isIosWebviewApp" href="../../index.html" class="trueme-home"></a>
+        </div>
+        <div class="top text-sm">绑定手机号，可以提高账号的安全等级</div> 
+        <div class="center">
+            <div class="form">
+                <label class="g-border-b">
+                    <input id="Text1" type="tel" name="userTel" v-model="phoneNo" maxlength="11" onkeypress="return IsNum(event)" placeholder="手机号" />
+                    <button class="text-sm g-border" :disabled="disabled" v-on:click="getValiCode()" v-text="getMsgText"></button>
+                </label>
+                <label><input type="tel" name="userTestCode" minlength="4" maxlength="4" v-model="codeNo" placeholder="短信验证码"></label>
+            </div>   
+            <div class="bind">
+                <button class="btn btn-main" :disabled="disabled" v-on:click="sublitPhoneBinding">验证并绑定</button>
+            </div>
+        </div>
+        <div class="bttom text-sm" id="bottom">
+            <h1>萃美良品温馨提示：</h1>
+            <p>1.一个手机号仅绑定一个萃美账号。</p>
+            <p>2.为保证账户安全，手机号绑定后无法解除绑定，可以更换绑定。</p>
+            <p>3.绑定或更换绑定手机号后3个月内不能再次更换，3个月以后可以自行更换绑定。</p>
+            <p>遇到其他问题？请联系萃美客服。</p>
+        </div>
+    </div>
+    
+</div>
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/common/js/main.js"></script>
+<script type="text/javascript" src="../../assets/trueme/js/function/function.js"></script>
+<script type="text/javascript" src="../../assets/trueme/js/bindPhone/phoneBinding.js?__inline"></script>
+</body>
+</html>

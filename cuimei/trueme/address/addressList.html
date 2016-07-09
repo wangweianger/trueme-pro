@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<title>收货地址</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+<!-- 样式文件 -->
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css" />
+<!-- 内部样式 -->
+    <style>
+        html{background-color: #f0f0f0;}
+        #container{display: none;}
+
+        .list{overflow: hidden; background-color: #fff;}
+        .list li{position: relative; min-height: 1.4rem; box-sizing: border-box;}
+        .list li .info{position: relative; display:block; padding: .35rem 0 .35rem .9rem; width: 6.46rem; font-size: .24rem; color: rgba(74,74,74,1); box-sizing: border-box; z-index: 10;}
+        .list li .select-box{position: absolute; top:0; left:0; bottom:0; width: .9rem;}
+        .list li .select-box .select{position: absolute; top:50%; left: .18rem; margin-top: -.2rem; width: .4rem; height: .4rem; background: url('../../assets/trueme/images/order/order_select_icon.png') no-repeat 0 -.4rem; background-size: .4rem .8rem;}
+        .list li .select-box .select.selected{background-position: 0 0;}
+        .list li .info .user-info .name, .list li .info .user-info .tel{margin-right: .24rem;}
+        .list li .info .user-info .default-tag{display: inline-block; background-color: #fd4a4a; font-size: .16rem; color: #fff; padding: 0 .04rem; text-align: center; vertical-align: top; margin-top: .06rem;}
+        .list li .edit-box{position: absolute; top:0; right:0; bottom:0; width: 1.04rem;}
+        .list li .edit-box .edit{position: absolute; top:50%; right: .38rem; margin-top: -.19rem; width: .38rem; height: .38rem; background: url('../../assets/trueme/images/order/edit_address.png') no-repeat 0 0; background-size: .38rem .38rem;}
+        .new-btn-box{ margin-top: .3rem; }
+        .new-btn-box .new-btn{display: block; width: 7.1rem; margin: 0 auto; height: .7rem; line-height: .7rem; font-size: .26rem; color: #fff; text-align: center; background-color: #fd4a4a; border-radius: .1rem;}
+    </style>
+
+<!-- 模板js文件 -->
+    <script src="../../assets/common/js/main.js"></script>
+
+</head>
+<body>
+	<div class="wrapper">
+        <div id="container">
+            <div class="header g-border-b">
+                <a class="header-back-box" onclick="goBack()">
+                    <span class="header-back"></span>
+                </a>
+                收货地址
+            </div>
+            <ul class="list">
+                <li class="g-border-b" data-address-id="11" v-for="item in userAddress">
+                    <a class="info" v-bind:href="'../order/confirmOrder.html?id=' + item.id">
+                        <div class="user-info">
+                            <span class="name" v-text="item.linkman"></span>
+                            <span class="tel" v-text="item.phone"></span>
+                            <span class="default-tag" v-show="item.status">默认</span>
+                            <div class="user-address" v-text="item.province + item.city + item.area + item.address"></div>
+                        </div>
+                    </a>
+                    <div class="select-box">
+                        <span class="select" v-bind:class="{'selected' : item.selectedId }"></span>
+                    </div>
+                    <a class="edit-box" v-bind:href="'addressEdit.html?id=' + item.id">
+                        <span class="edit"></span>
+                    </a>
+                </li>
+            </ul>
+            <div class="new-btn-box">
+                <a class="new-btn" href="addressNew.html">新增收货地址</a>
+            </div>
+        </div>
+	</div>
+    <script>
+        var vm = new Vue({
+            el: '#container',
+            data: {
+            	toDoId: '',
+                userAddress: []
+            },
+            ready: function(){
+                var that = this;
+                sessionStorage.setItem('saveAndUseAddress','1');
+                var selectedId = getQueryString('id');
+                $.AJAX({
+                    url: config.basePath + 'user/svuseraddress/getUserAddressList',
+                    success: function(o){
+                        for(var i=0; i<o.data.userAddressList.length; i++){
+                            o.data.userAddressList[i].selectedId = false;
+                            if(!getQueryString('id')){
+                                if(o.data.userAddressList[i].status == 1){
+                                    o.data.userAddressList[i].selectedId = true;
+                                    that.toDoId = o.data.userAddressList[i].id;
+                                    break;
+                                }
+                            }
+                            if(o.data.userAddressList[i].id == getQueryString('id')){
+                                o.data.userAddressList[i].selectedId = true;
+                                that.toDoId = getQueryString('id');
+                                break;
+                            }
+                        }
+                        that.userAddress = o.data.userAddressList;
+                        $('#container').show();
+                    }
+                });
+            },
+            methods: {
+
+            }
+        });
+    </script>
+</body>
+</html>

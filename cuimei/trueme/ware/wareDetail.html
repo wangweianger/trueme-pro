@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>商品详情</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <!-- 样式文件 -->
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/swiper-3.3.1.min.css"/>
+    <link rel="stylesheet" href="../../assets/trueme/css/ware/wareDetail.css?__inline">
+    <!-- script -->
+    <script type="text/javascript" src="../../assets/common/js/main.js"></script>
+    <script type="text/javascript" src="../../assets/common/js/swiper-3.3.1.jquery.min.js"></script>
+    <script type="text/javascript" src="../../assets/trueme/js/function/function.js"></script>
+    <script src="../../assets/trueme/js/ware/wareDetail.js?__inline"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div id="container">
+        <div class="header">
+            <div class="header-back" onclick="goBack()">
+                <span class="header-icon back-arrow"></span>
+            </div>
+            <a href="../../index.html" class="trueme-home trueme-home2"></a>
+            <div class="header-cart" style="right:{{isIosWebviewApp?'.8rem':0}}">
+                <a class="header-icon header-cart-icon" href="/trueme/cart/cart_new.html"></a>
+            </div>
+            <button id="appaButShare" class="otherShare hide" v-on:click="winXinShare(false)"></button>
+        </div>
+        
+        <!-- banner -->
+        <div class="banner swiper-container">
+            <div class="swiper-wrapper">
+                <div v-for="item in banner" class="swiper-slide">
+                    <div class="img-box">
+                        <img :src="item.imgMainUrl | qiniuImgFilter"/>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <!-- 商品主信息 -->
+        <div class="good-main hide">
+            <h3 class="name" v-text="spuDetailList.title"></h3>
+            <div class="price"><span class="now-price" v-text="goodsPrice | currency '¥'"></span><del class="old-price" v-text="spuDetailList.markedPrice | currency '¥'"></del></div>
+            <div class="sell-info g-border-b">
+                <span class="sell-num" v-text="'销量'+spuDetailList.saleCount+'件'"></span>
+                <span class="store-num">收藏<i v-text="spuDetailList.collectNum"></i>人</span>
+                <span class="postage">运费：包邮</span>
+            </div>
+            <div class="tags">
+                <span>7天退货</span>
+                <span>退货补贴</span>
+                <span>先行赔付</span>
+            </div>
+        </div>
+        <!-- 商品详情 -->
+        <div class="detail hide" id="detailsList">
+            <h3 class="zx"><span>商品详情</span><i></i></h3>
+            <div class="detail-img" v-for="item1 in spuDetail">
+                <img class="lazy" src="/assets/common/images/gods-default-icon.png" data-original="{{item1.detailImage | qiniuImgFilter}}" />
+            </div>
+        </div>
+        <!-- 看了又看 -->
+        <div class="see-more hide">
+            <h3 class="zx"><span>看了又看</span><i></i></h3>
+            <!-- hot 看了又看 -->
+            <link rel="import" href="../main/getHotSaleList.html?__inline">
+        </div>
+        <!-- 底部导航 -->
+        <div class="too-bar hide">
+            <div class="too-wrap g-border-t">
+                <div class="store-btn" v-on:click="collection($event)"><span v-bind:class="['store-icon', hasCollected ? 'stored' : '']"></span>
+                    <p class="store-text">收藏</p></div>
+                <div class="too-btn onLine hide">
+                    <div class="add-btn" v-on:click="joinShoppingCart">加入购物车</div>
+                    <div class="buy-btn" v-on:click="payOrderNow">立即购买</div>
+                </div>
+                <div class="too-btn offLine hide">
+                    <div class="disableBtn">已下架</div>
+                </div>
+            </div>
+        </div>
+        <!-- 弹出层 -->
+        <div class="shopCart-box">
+            <div class="masked"></div>
+            <div class="shopCart-con">
+                <div class="money padding-horizontal g-border-b">
+                    <div class="pull-left"><span class="text-main" v-text="goodsPrice | currency '¥'"></span> <span v-text="getSkuStockInf | getSkuStockInFilter"></span></div>
+                    <a href="javascript:void (0)" id="close_box" class="pull-right"></a>
+                </div>
+                <div class="color-z">
+                    <div class="color-hd padding-horizontal g-border-b active">
+                        <div class="pull-left">规格</div>
+                        <div class="pull-right text-main">请选择 <i></i></div>
+                    </div>
+                    <div class="color-bd padding-horizontal g-border-b" style="display:block">
+                        <div class="color-bd-c padding-vertical g-border-b">
+                            <ul>
+                                <li class="g-border" v-on:click.stop="activeLi($event,items.skuId)" v-for="items in specifin" v-text="items.skuDesc" :class="{'checked':$index==0}">黑色</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="num padding-horizontal g-border-b">
+                    <div class="pull-left">数量</div>
+                    <div class="pull-right g-border">
+                        <span class="left g-border-r disabled" v-on:click.stop="reduceShopNum()">-</span>
+                        <span class="num-value" v-text="shopingNum"></span>
+                        <span class="right g-border-l" v-on:click.stop="addShopNum()">+</span>
+                    </div>
+                </div>
+                <button class="box-btn" v-on:click="submitShopNow()">确 定</button>
+            </div>
+        </div>
+        <div style="height: .88rem;"></div>  
+
+    </div>
+</div>
+</body>
+</html>

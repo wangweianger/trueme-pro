@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>搜索</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <!-- 样式文件 -->
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <!-- 内部样式 -->
+    <style>
+        html { background-color: #f0f0f0; }
+        .search-box { position: relative; width: 7.5rem; height: .88rem; padding: .14rem .14rem .14rem .2rem; background-color: #fff; box-sizing: border-box; }
+        .search-box .search_icon { position: absolute; top: 50%; left: .4rem; margin-top: -.14rem; width: .28rem; height: .28rem; background: url('../../assets/trueme/images/search/small_search_icon.png') no-repeat 0 0; background-size: cover; }
+        .search-box input { padding-left: .64rem; padding-right: .64rem; width: 4.92rem; height: .6rem; border: none; background-color: #eee; border-radius: .1rem; margin: auto; box-sizing: content-box; -webkit-box-sizing: content-box; }
+        .search-box .clear-input { position: absolute; top: .14rem; right: 1.1rem; bottom: .14rem; width: .64rem; }
+        .search-box .clear-input span { position: absolute; top: 50%; right: .2rem; margin-top: -.12rem; width: .24rem; height: .24rem; background: url('../../assets/trueme/images/search/clear_input.png') no-repeat 0 0; background-size: cover; }
+        .search-box .search-status { float: right; line-height: .62rem; padding-right: .12rem }
+        .pop-search { background-color: #fff; overflow: hidden; }
+        .pop-search .pop-search-title { height: .7rem; line-height: .73rem; padding: 0 .2rem; font-size: .24rem; color: #aaa; }
+        .pop-search .pop-search-list { padding: .3rem .2rem .24rem .2rem; overflow: hidden; }
+        .pop-search .pop-search-list li { float: left; height: .56rem; margin: 0 .2rem .1rem 0; padding: 0 .26rem; font-size: .28rem; color: #7a7a7a; }
+        .pop-search .pop-search-list li:before {  border-radius: 1rem; border-color: #e0e0e0 }
+        .pop-search .pop-search-list li span { display: inline-block; vertical-align: top; margin-top: .08rem; }
+    </style>
+    <!-- 模板js文件 -->
+    <script src="../../assets/common/js/main.js"></script>
+    <script src="../../assets/common/js/swiper-3.3.1.jquery.min.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div id="container">
+        <div class="search-box g-border-b">
+            <span class="search_icon"></span>
+            <input type="text" placeholder="搜索商品" v-on:keydown="changeWord" v-on:input="changeWord" v-model="searchKey" v-on:keyup.enter="search"/>
+            <div class="clear-input" v-show="!isEmpty" v-on:click="clear">
+                <span></span>
+            </div>
+            <span class="search-status" v-on:click="search" v-text="searchKey ? '确认' : '取消'"></span>
+        </div>
+        <div class="pop-search">
+            <div class="pop-search-title g-border-b">大家都在搜</div>
+            <ul class="pop-search-list">
+                <li class="g-border" v-for="hot in hotList" v-on:click="searchDefault"><span v-text="hot.keyName"></span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#container',
+        data: {
+            isEmpty: true,
+            searchKey: '',
+            hotList: []
+        },
+        ready: function () {
+            var that = this;
+            $.AJAX({
+                url: config.basePath + 'content/svItemHome/getHotSearchKey',
+                success: function (o) {
+                    that.hotList = o.data.hotSearchKeyList;
+                },
+                error: function () {
+                },
+                complete: function () {
+                }
+            });
+        },
+        methods: {
+            changeWord: function () {
+                var that = this;
+                if (that.searchKey) {
+                    that.isEmpty = false;
+                    $('.search-status').text('确认');
+                } else {
+                    return false;
+                }
+            },
+            clear: function () {
+                var that = this;
+                $('.search-box input').val('');
+                that.isEmpty = true;
+                $('.search-status').text('取消');
+            },
+            search: function () {
+                var that = this;
+                if (that.searchKey) {
+                    var url = window.location.origin + '/trueme/search/search_result.html';
+                    url = setQueryString('keyName', that.searchKey, url);
+                    location.href = url;
+                } else {
+                    location.href = window.location.origin;
+                }
+            },
+            searchDefault: function (e) {
+                var that = this;
+                $('.search-box input').val($(e.target).text());
+                that.searchKey = $(e.target).text();
+                that.search();
+            }
+        }
+    });
+</script>
+</body>
+</html>

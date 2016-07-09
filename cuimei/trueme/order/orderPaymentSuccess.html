@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>订单支付</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <!-- 样式文件 -->
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/trueme/css/order/orderPaymentSuccess.css?__inline"/>
+    <!-- 模板js文件 -->
+    <script type="text/javascript" src="../../assets/common/js/main.js"></script>
+    <script type="text/javascript" src="../../assets/trueme/js/function/function.js"></script>
+   
+</head>
+<body class="bg-cc">
+<div class="container padding-horizontal-0">
+    <div id="orderSuccess" class="orderPaymentSuccess">
+        <div class="header">
+            <!-- <div class="header-right-text" v-on:click="toNewUrl()">完成</div> -->
+            订单支付
+        </div>
+        <div class="top">
+            <div class="success-icon"><img v-show="done" src="../../assets/trueme/images/order/paymentSuccess.png" alt="支付成功"></div>
+            <div class="title title1">支付方式：<span class="text-main">在线支付</span></div>
+            <div class="title title2">订单金额：<span class="text-main">&yen;<span v-text="totalFee"></span></span></div>
+            <div class="butLink text-center">
+                <a href="myOrder.html" class="btn btn-default">查看订单</a>
+                <a href="/index.html" class="btn btn-main">返回首页</a>
+            </div>
+            <div class="p">注意：萃美不会以订单异常、系统升级为由，要求您点击任何链接进行退款操作。</div>
+        </div>
+        <div class="cm-ewm"><img src="../../assets/common/images/cm-ewm.png" alt="二维码"></div>
+        <div class="see-more hot-see-more">
+            <div class="recommend-title"><span>继续剁手</span></div>
+            <!-- hot 看了又看 -->
+            <link rel="import" href="../main/getHotSaleList.html?__inline">
+        </div>
+    </div>
+    <div style="height: .88rem;"></div> 
+</div>
+ <script type="text/javascript" src="../../assets/trueme/js/order/orderPaymentSuccess.js?__inline"></script>
+</body>
+</html>

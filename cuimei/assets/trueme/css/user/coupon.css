@@ -1,0 +1,22 @@
+#container .m-header { background-color: #fd4a4a; color: #fff; }
+.m-header .header-left .back { background: url("../../../maker/images/common/back-bei.png") no-repeat center; background-size: .25rem auto }
+.cou-nav { width: 100%; height: .88rem; padding: .12rem 0; background-color: #fff; overflow: hidden; }
+.cou-nav li { float: left; width: 33.3%; height: .64rem; line-height: .64rem; text-align: center; color: #4a4a4a; }
+.cou-nav li > span { position: relative; display: block; width: 100%; }
+.cou-nav li.active span:before { content: ''; position: absolute; bottom: -.11rem; left: 10%; width: 80%; height: 2px; background-color: #fd4a4a; }
+.no-coupon { width: 100%; height: 1.6rem; margin-top: 3.7rem; line-height: 3.2rem; text-align: center; background: url("../../images/user/no-coupon.png") no-repeat center; background-size: 1.4rem auto; color: #ccc; }
+.coupon-ul { padding: .7rem .2rem .3rem; overflow: hidden; }
+.coupon-ul li { position: relative; width: 100%; height: 1.77rem; margin-bottom: .3rem; background: url("../../images/user/youhuiquan.png") no-repeat center; background-size: 100%; }
+.coupon-ul li > div.mon { position: relative; float: left; width: 2rem; height: 1.77rem; line-height: 1.77rem; color: #fdb34a; font-size: .72rem; text-align: center; }
+.coupon-ul li > div.mon b { position: absolute; right: 0; top: .685rem; width: 1px; height: .4rem; }
+.coupon-ul li > div.con { position: relative; float: left; width: 3.8rem; height: 100%; padding: .2rem .2rem; overflow: hidden }
+.coupon-ul li > div.con h4, .coupon-ul li > div.con p { width: 100%; font-size: .28rem; text-align: right; word-wrap: normal; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; color: #4a4a4a }
+.coupon-ul li > div.con p { font-size: .26rem; color: #737373 }
+.coupon-ul li > div.con h5 { position: absolute; right: .2rem; bottom: .2rem; width: 100%; font-size: .22rem; color: #aaa; text-align: right; word-wrap: normal; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+.coupon-ul li > div.din { float: right; width: 1.1rem; font-size: .3rem; color: #fff; padding-top: .45rem }
+.coupon-ul li.active { background-image: url("../../images/user/juse.png"); }
+.coupon-ul li.active .mon, .coupon-ul li.active .con h4, .coupon-ul li.active .con h5, .coupon-ul li.active .con p { color: #fff; }
+.coupon-ul li.active .din { display: none }
+.coupon-ul li.shiyong,.coupon-ul li.shixiao { background-image: url("../../images/user/huise.png"); }
+.coupon-ul li.shixiao:before { content: ''; position: absolute; top: .1rem; right: .2rem; width: 2.57rem; height: 100%; background: url("../../images/user/yishixiao.png") no-repeat; background-size: 2.57rem auto; }
+

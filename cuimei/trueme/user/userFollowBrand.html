@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>关注的品牌</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <!-- 样式文件 -->
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/trueme/css/user/user.css"/>
+    <!-- 内部样式 -->
+</head>
+<body class="bg-cc padding-bottom-xl">
+<div class="wrapper">
+    <div class="m-header">
+        <div class="header-left"><a href="javascript:void(0)" onclick="goBack();" class="back"></a></div>
+        关注的品牌
+    </div>
+    <div class="container padding-horizontal-0 hide">
+        <ul class="follow-list">
+            <li class="check">
+                <div class="img"><img src="../../assets/images/user/brand.png" alt="品牌"></div>
+                <div class="text">
+                    <h4>星巴克</h4>
+                    <p class="text-truncate text-737373">Costa coffee正品咖啡可5-18斤纤饮包邮</p>
+                </div>
+                <div class="right"><i></i>已关注</div>
+            </li>
+            <li>
+                <div class="img"><img src="../../assets/images/user/brand.png" alt="品牌"></div>
+                <div class="text">
+                    <h4>星巴克</h4>
+                    <p class="text-truncate text-737373">Costa coffee正品咖啡可5-18斤纤饮包邮</p>
+                </div>
+                <div class="right"><i></i>已关注</div>
+            </li>
+            <li class="check">
+                <div class="img"><img src="../../assets/images/user/brand.png" alt="品牌"></div>
+                <div class="text">
+                    <h4>星巴克</h4>
+                    <p class="text-truncate text-737373">Costa coffee正品咖啡可5-18斤纤饮包邮</p>
+                </div>
+                <div class="right"><i></i>已关注</div>
+            </li>
+            <li>
+                <div class="img"><img src="../../assets/images/user/brand.png" alt="品牌"></div>
+                <div class="text">
+                    <h4>星巴克</h4>
+                    <p class="text-truncate text-737373">Costa coffee正品咖啡可5-18斤纤饮包邮</p>
+                </div>
+                <div class="right"><i></i>已关注</div>
+            </li>
+        </ul>
+    </div>
+    <!--无网络提示-->
+    <div class="follow-msg ">
+        <div class="follow-msg-box hide">
+            <p class="margin-bottom-lg">啊哦，网络不太顺畅哦~</p>
+            <button class="btn btn-main">重新加载</button>
+        </div>
+    </div>
+    <div class="follow-msg no-brand ">
+        <div class="follow-msg-box">
+            <p class="margin-bottom-lg">暂无关注的品牌</p>
+        </div>
+    </div>
+</div>
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/common/js/main.js"></script>
+<script type="text/javascript" src="../../assets/trueme/js/user/myHome.js"></script>
+<script>
+    $(function () {
+        $(".follow-list li").click(function () {
+            $(this).toggleClass("check");
+        });
+    })
+</script>
+</body>
+</html>

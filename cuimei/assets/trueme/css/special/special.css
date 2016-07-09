@@ -1,0 +1,14 @@
+/*special.css  专题*/
+.special .banner { height: 5rem; overflow: hidden; }
+.special .banner img { width: 100%; height: 100%; }
+.special .title { height: 1rem; padding: 0 0.3rem; }
+.special .title .default { line-height: 1rem; font-size: 0.3rem; color: #000; display: inline-block; }
+.special .title .icon-down { position: relative; top: .05rem; display: inline-block; width: 0; height: 0; border: .1rem solid; border-color: #e0e0e0 transparent transparent transparent; }
+.special .itemList { padding: .2rem 0.25rem 0; overflow: hidden; }
+.special .itemList ul { overflow: hidden; }
+.special .itemList li { width: 49.8%; padding: 0 0.05rem; overflow: hidden; margin-bottom: 0.2rem; }
+.special .itemList li:nth-child(even) { float: right; }
+.special .itemList li:nth-child(odd) { float: left; }
+.special .itemList li img { width: 100%; height: 3.4rem; }
+.special .itemList li h1 { height: .72rem; text-align: center; font-size: 0.24rem; color: #000; margin: 0.14rem .2rem .08rem; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.special .itemList li .price { font-size: 0.24rem; }

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>我的钱包</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/maker/css/wallet/wallet.css?__inline"/>
+    <!-- script -->
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <script type="text/javascript" src="../../assets/common/js/main.js"></script>
+</head>
+<body class="bg-cc">
+<header>
+    <div class="m-header g-border-b">
+        <div class="header-left"><a href="javascript:void(0)" onclick="goBack();" class="back"></a></div>
+        <button id="appaButShare" class="indexShare hide" onclick="everyPageWeiXinShare({'isnotshareNow':false})"></button>
+        我的钱包
+    </div>
+</header>
+<div class="wrapper padding-wrapper hide" id="container">
+    <div class="wallet-top-box">
+        账户余额(元)<br><span v-text="datas.totalMoney | currency '¥'"></span>
+    </div>
+    <div class="text-center wallet-nav g-border-b">
+        <div class="col-xs-4">今日收入<br><span v-text="datas.todayIncome | currency '¥'"></span></div>
+        <div class="col-xs-4">可提现收入<br><span v-text="datas.usableMoney | currency '¥'"></span></div>
+        <div class="col-xs-4">未入账收入<br><span v-text="datas.unbilledMoney | currency '¥'"></span></div>
+    </div>
+    <div class="wallet-list">
+        <h3 class="g-border-b">收入明细</h3>
+        <ul class="srmx">
+            <li class="g-border-b">
+                <a href="walletActiveIncome.html">
+                    <div class="pull-left">活动收入</div>
+                    <i></i>
+                    <div class="pull-right" v-text="datas.activityIncome | currency '¥'"></div>
+                </a>
+            </li>
+            <li class="g-border-b">
+                <a href="walletMakerIncome.html">
+                    <div class="pull-left">个人收入</div>
+                    <i></i>
+                    <div class="pull-right" v-text="datas.makerIncome | currency '¥'"></div>
+                </a>
+            </li>
+            <li class="g-border-b">
+                <a href="walletTeamIncome.html">
+                    <div class="pull-left">团队收入</div>
+                    <i></i>
+                    <div class="pull-right" v-text="datas.teamIncome | currency '¥'"></div>
+                </a>
+            </li>
+            <li class="g-border-b">
+                <a href="walletWithdrawCashRecord.html">
+                    <div class="pull-left">提现记录</div>
+                    <i></i>
+                    <div class="pull-right" v-text="datas.withdrawRecord | currency '¥'"></div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="container padding-vertical">
+        <a href="withdrawCash.html" class="btn btn-main btn-block">我要提现</a>
+        <div class="wallet-msg">
+            <div class="col-xs-1"></div>
+            <p class="col-xs-11 padding-0 text-justify">申请提现后，金额将会在3-7个工作日到账，每次提现金额必须大于等于100元。</p>
+        </div>
+    </div>
+</div>
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/maker/js/wallet/wallet.js?__inline"></script>
+</body>
+</html>

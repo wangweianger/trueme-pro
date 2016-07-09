@@ -1,0 +1,18 @@
+/*phone-binding.css*/
+.header { position: relative; line-height: .88rem; text-align: center; font-size: .36rem; color: #2c2c2c; background-color: #fff; z-index: 100; border-bottom: 1px solid #e0e0e0; }
+.header .header-left { position: absolute; top: 0; width: .8rem; height: .88rem; }
+.header .header-left { left: 0; }
+.header a { display: block; width: 100%; height: 100%; background-image: url('../../images/user/user1.png'); background-repeat: no-repeat; background-size: 4.1rem auto; }
+.header .header-left a { background-position: .3rem center; }
+.phone-binding { }
+.phone-binding .top { width: 100%; height: 0.64rem; line-height: 0.64rem; padding-left: 0.2rem; }
+.phone-binding .center { overflow: hidden; }
+.phone-binding .center .form { background: #fff; }
+.phone-binding .center .form label { display: block; height: 1rem; line-height: 1rem; position: relative; }
+.phone-binding .center .form label>input { border: none; width: 100%; height: 98%; padding: 0 0.2rem; }
+.phone-binding .center .form label:nth-child(1) { border-bottom: solid 1px #e0e0e0; }
+.phone-binding .center .form label:nth-child(1)>span { display: block; width: 1.64rem; height: 0.5rem; position: absolute; right: 0.2rem; top: 0.25rem; border: solid 1px #fd4a4a; line-height: 0.5rem; border-radius: 5px; text-align: center; color: #fd4a4a; }
+.phone-binding .center .bind { margin: 0.45rem 0.2rem 0; display: block; }
+.phone-binding .center .bind>button { width: 100%; display: block; height: 0.72rem; }
+.phone-binding .bttom { position: absolute; left: 0; bottom: 0; color: #c3c3c3; margin: 0.2rem; line-height: 25px; }
+.phone-binding .bttom h1 { margin-bottom: 10px; }

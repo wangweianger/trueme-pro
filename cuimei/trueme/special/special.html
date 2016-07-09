@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html id="container">
+<head>
+    <title v-text="datas.spuHomeTitle"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <!-- 样式文件 -->
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/trueme/css/special/special.css?__inline"/>
+    <!-- 内部样式 -->
+</head>
+<body>
+<div class="container padding-horizontal-0">
+    <div  class="special" >
+        <div class="m-header">
+            <div class="header-left"><a onclick="goBack()" href="javascript:void(0)" class="back"></a></div>
+            <button id="appaButShare" class="indexShare hide" onclick="everyPageWeiXinShare({'isnotshareNow':false})"></button>
+            <span v-text="datas.spuHomeTitle"></span>
+        </div>
+        <div id="showLips" class="show visibility">
+            <div class="banner">
+                <a href="javascript:void(0)"><img :src="mainImgUrl | qiniuImgFilter"></a>
+            </div> 
+            <div class="title g-border-b">
+                <div class="default">默认排序</div>
+                <span class="icon-down"></span>
+            </div>
+            <div class="itemList" id="itemList">
+                <ul>
+                    <li v-for="item in datas.spuList">
+                        <a v-bind:href="'/trueme/ware/wareDetail.html?spuId=' + item.spuId">
+                        <img :src="item.imgMainUrl | qiniuImgFilter 2 350 350">
+                        <h1 v-text="item.skuTitle"></h1>
+                        <div class="price text-center text-main" v-text="item.salePrice | currency '¥'"></div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+     <!-- 加载更多数据 -->
+    <div class="loading-box hide">
+        <span class="loading-img" v-if="loadingStatus==2"></span>
+        <span class="loading-text" v-text="loadingStatus | loadingStatusFilter"></span>
+    </div>
+    <div id="bottomscolltop"></div>
+</div>
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/common/js/main.js"></script>
+<script type="text/javascript" src="../../assets/trueme/js/function/function.js"></script>
+<script type="text/javascript" src="../../assets/trueme/js/special/special.js?__inline"></script>
+</body>
+</html>

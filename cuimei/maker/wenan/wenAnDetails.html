@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zn-cn">
+<head>
+    <meta charset="UTF-8">
+    <title class="wenantitle">萃美</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <!-- style -->
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/swiper-3.3.1.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/maker/css/wenan/wenan-details.css?__inline"/>
+    <style>
+        .m-header .header-cart-icon { background: url('../../assets/common/images/shop-cart.png') no-repeat center; background-size: .4rem auto; }
+        h4.wenandeta-title{font-size:.35rem;text-align:center;padding:.2rem .2rem .4rem ;font-weight:bold;}
+        /*视频*/
+        .video {height:4.5rem;}
+        .video video {height: 4.5rem;}
+    </style>
+    <!-- 模板js文件 -->
+    <script type="text/javascript" src="../../assets/common/js/main.js"></script>
+    <script type="text/javascript" src="../../assets/common/js/swiper-3.3.1.jquery.min.js"></script>
+    <script type="text/javascript" src="../../assets/trueme/js/function/function.js"></script>
+    <script type="text/javascript" src="../../assets/maker/js/function/function.js"></script>
+</head>
+<body class="hide" id="container">
+<header>
+    <div class="m-header g-border-b">
+        <div class="header-left"><a href="javascript:void(0)" onclick="goBack();" class="back"></a></div>
+        <a href="/index.html" class="trueme-home"></a>
+        <div class="header-right" style="right:{{isIosWebviewApp?'.8rem':0}}"><a class="header-cart-icon" href="/trueme/cart/cart_new.html"></a></div>
+        <button id="appaButShare" class="otherShare hide" v-on:click="winXinShare(false)"></button>
+        <span class="wenantitle"></span>
+    </div>
+</header>
+<div class="wrapper padding-wrapper-top" >
+    <!-- 文章模块 -->
+    <div class="wenan-list padding-0">
+        <!--视频-->
+        <div v-if="datas.contentType==2" class="video">
+            <video class="hide" style="background-image:url('{{datas.mainUrl}}');" :src="datas.vedioUrl" controls="false" loop="true" preload="false" webkit-playsinline="" x-webkit-airplay="allow"></video>
+            <div class="video-mainimg" v-on:click="videoAboutCaoZuo($event,datas.mainUrl)">
+                <div class="masker"></div>
+                <img :src="datas.mainUrl"/>
+                <div class="playIcon"></div>
+            </div>
+        </div>
+        <!-- 主图 -->
+        <div class="center" v-if="!datas.contentType==2"><img :src="datas.mainUrl|qiniuImgFilter"></div>
+        <h4 class="wenandeta-title" v-text="datas.title"></h4>
+        <!-- 文字模块 -->
+        <div class="block" v-for="item in datas.detailList">
+            <div class="center" v-if="item.contentImgUrl"><img :src="item.contentImgUrl|qiniuImgFilter"></div>
+            <p class="wenan-p" v-if="item.contentText" v-text="item.contentText"></p>
+            <div class="pro" v-if="item.spuId">
+                <b class="g-border"></b>
+                <a href="/trueme/ware/wareDetail.html?spuId={{item.spuId}}&shareId={{shareId}}">
+                    <img :src="item.skuImgUrl|qiniuImgFilter 2 300 300">
+                    <div class="con">
+                        <span v-text="item.salePrice  | currency '¥'"></span>
+                        <del v-text="item.salePrice  | currency '¥'"></del>
+                        <p class="text-truncate padding-top-sm" v-text="item.skuTitle"></p>
+                    </div>
+                </a>
+                <div class="pro-btn">
+                    <a href="javascript:void(0)" v-on:click="joinShoppingCart(item.spuId,item.skuType)" class="btn btn-main badge">加入购物车</a>
+                    <a href="javascript:void(0)" v-on:click="payOrderNow(item.spuId,item.skuType)" class="btn btn-main pay">立即购买</a>
+                </div>
+            </div>
+        </div>
+        <!-- Swiper -->
+        <div v-if="datas.skuList.length">
+            <div class="text-good"><i></i><span>本文商品 </span></div>
+            <div class="swiper-container text-goods">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide text-center" v-for="item in datas.skuList">
+                        <a href="/trueme/ware/wareDetail.html?spuId={{item.spuId}}&shareId={{shareId}}">
+                            <div class="img"><img :src="item.skuImgUrl|qiniuImgFilter 2 300 300"></div>
+                            <p v-text="item.skuTitle|limitToCut 4"></p>
+                            <span v-text="item.salePrice | currency '¥'"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="wa-btn">
+            <li class="dianzan"><a v-on:click="likeElectricityWenAn($event)" href="javascript:void (0);">点赞</a></li>
+            <li><a href="javascript:void (0);" id="isShare">分享</a></li>
+            <li :class="{ 'active': datas.collect==1?true:false }" ><a v-on:click="collectionWenAn($event)" href="javascript:void (0);">收藏</a></li>
+        </ul>
+    </div>
+    <div class="cm-ewm"><img src="../../assets/common/images/cm-ewm.png" alt="二维码"></div>
+
+    <!--  弹出层 -->
+    <div class="shopCart-box">
+        <div class="masked"></div>
+        <div class="shopCart-con">
+            <div class="money padding-horizontal g-border-b">
+                <div class="pull-left"><span class="text-main" v-text="goodsPrice | currency '¥'"></span> <span v-text="getSkuStockInf | getSkuStockInFilter"></span></div>
+                <a href="javascript:void (0)" id="close_box" class="pull-right"></a>
+            </div>
+            <div class="color-z">
+                <div class="color-hd padding-horizontal g-border-b active">
+                    <div class="pull-left">规格</div>
+                    <div class="pull-right text-main">请选择 <i></i></div>
+                </div>
+                <div class="color-bd padding-horizontal g-border-b" style="display:block">
+                    <div class="color-bd-c padding-vertical g-border-b">
+                        <ul>
+                            <li class="g-border" v-on:click="activeLi($event,items.skuId)" v-for="items in specifin" v-text="items.skuDesc" :class="{'checked':$index==0}">黑色</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="num padding-horizontal g-border-b">
+                <div class="pull-left">数量</div>
+                <div class="pull-right g-border">
+                    <span class="left g-border-r disabled" v-on:click="reduceShopNum()">-</span>
+                    <span class="center" v-text="shopingNum"></span>
+                    <span class="right g-border-l" v-on:click="addShopNum()">+</span>
+                </div>
+            </div>
+            <button class="box-btn" v-on:click="submitShopNow()">确 定</button>
+        </div>
+    </div>
+    <div style="height: .88rem;"></div>  
+
+</div>
+<!-- 分享图标 -->
+<div id="weixinShare" class="share hide"></div>
+<!-- script -->
+<script type="text/javascript" src="../../assets/maker/js/wenan/wenAnDetails.js?__inline"></script>
+</body>
+</html>

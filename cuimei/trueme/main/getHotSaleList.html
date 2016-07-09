@@ -1,0 +1,69 @@
+
+<!-- 内部样式 -->
+<style>
+    .hot-see-more{background: #fff;overflow: hidden;margin-top:0.2rem;}
+    .hot-see-more .recommend-title{font-size:0.32rem; height: .92rem; line-height: .92rem; text-align: center; }
+    .hot-see-more .recommend-title span{position: relative; display: inline-block;}
+    .hot-see-more .recommend-title span::before{content:''; position: absolute; top:50%; left: -.36rem; margin-top: -1px; width: .36rem; height: 1px; background-color: #4a4a4a;}
+    .hot-see-more .recommend-title span::after{content:''; position: absolute; top:50%; right: -.36rem; margin-top: -1px; width: .36rem; height: 1px; background-color: #4a4a4a;}
+    .more-list { padding: 0 .15rem .2rem; }
+    .more-list li { float: left; margin : 0 .05rem .2rem; }
+    .more-list li .more-img { overflow: hidden; }
+    .more-list li .more-img img { display: block; width: 3.5rem; height: 3.5rem; }
+    .more-list li .more-name {height: .52rem; width: 3.5rem; margin: .06rem auto 0; padding: 0 .2rem; line-height: .52rem; text-align: center; font-size: .24rem; color: #000; overflow: hidden; text-overflow: ellipsis;}
+    .more-list li .more-price { margin-bottom: .14rem; text-align: center; font-size: .24rem; color: #fd4a4a; }
+</style>
+ 
+<!-- html -->
+<div id="appHot">
+<ul class="more-list">
+    <li v-for="item in hotSaleList">
+        <a v-bind:href="'../ware/wareDetail.html?spuId=' + item.spuId">
+            <div class="more-img">
+                <img class="lazy" src="/assets/common/images/gods-default-icon.png" data-original="{{item.imgMainUrl|qiniuImgFilter 2 350 350}}"/>
+            </div>
+            <p class="more-name" v-text="item.skuTitle"></p>
+            <div class="more-price" v-text="item.salePrice | currency '¥'"></div>
+        </a>
+    </li>
+</ul>
+</div>
+
+<script type="text/javascript">
+var mixin = {
+  methods: {
+    //获取hot数据列表
+    conflicting: function (json,num) {
+        var skuType=json.skuType;
+        if(skuType!=3){
+             var num=num||4
+            $.AJAX({
+                type:'GET',
+                url:config.basePath+'product/svProduct/getHotSaleList',
+                data:{
+                    num:num,
+                },
+                success:function(data){
+                    json.callback(data.data.hotSaleList);
+                    //滚动懒加载
+                    setTimeout(function(){$("img.lazy").lazyload({threshold:config.threshold});}, 0); 
+                   //return data.data.hotSaleList;
+                },
+            });
+        }else{
+            //获得礼包数据
+            $.AJAX({
+                type: 'get',
+                url: config.basePath + 'product/svProduct/getPullNewSkuList',
+                success: function(data) {
+                    json.callback(data.data.getPullNewSkuList);
+                    //滚动懒加载
+                    setTimeout(function(){$("img.lazy").lazyload({threshold:config.threshold});}, 0);
+                },
+            });
+        }
+    },
+  },
+};
+
+</script>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>我的团队</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/maker/css/team/team.css?__inline"/>
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <script type="text/javascript" src="../../assets/common/js/main.js"></script>
+</head>
+<body class="bg-cc">
+<!-- <header>
+    <div class="m-header g-border-b">
+        <div class="header-left"><a href="javascript:void(0)" onclick="goBack();" class="back"></a></div>
+        <button id="appaButShare" class="indexShare hide" onclick="everyPageWeiXinShare({'isnotshareNow':false})"></button>
+        我的团队
+    </div>
+</header> -->
+<header>
+    <div class="m-header">
+        <div class="header-left"><a href="javascript:void(0)" onclick="goBack();" class="back2"></a></div>
+    </div>
+</header>
+<div class="wrapper padding-wrapper-bottom" id="container">
+    <div id="teamDatas" class="hide">
+        <div class="top-box">
+            <i v-text="'直属导师：'+datas.masterName"></i>
+            <h3 v-text="datas.userName"></h3>
+            <span v-text="'团队人数：'+datas.teamCount"></span>
+        </div>
+        <ul class="team-list">
+            <li class="g-border-b"><i class="g-border-r"></i><p>今日团队销售</p><span v-text="datas.todayTeamSellMoney | currency '¥'"></span></li>
+            <li class="g-border-b"><i class="g-border-r"></i><p>今日团队邀请</p><span v-text="datas.todayTeamNewMember"></span></li>
+            <li class="g-border-b"><p>今日团队佣金</p><span v-text="datas.todayTeamCommision | currency '¥'"></span></li>
+            <li class="g-border-b"><i class="g-border-r"></i><p>本月团队销售</p><span v-text="datas.monthlyTeamSellMoney | currency '¥'"></span></li>
+            <li class="g-border-b"><i class="g-border-r"></i><p>本月团队邀请</p><span v-text="datas.monthlyTeamNewMember"></span></li>
+            <li class="g-border-b"><p>本月团队佣金</p><span v-text="datas.monthlyTeamCommision | currency '¥'"></span></li>
+        </ul>
+    </div>
+    <div class="team-users hide">
+        <div class="team-user-top g-border-b">团队成员列表 <a href="teamUsers.html">查看全部>></a></div>
+        <ul>
+            <li class="title">
+                <div class="w-2">昵称</div>
+                <div class="w-2">创客等级</div>
+                <div class="w-2">层级</div>
+                <div class="w-2">本月销售</div>
+                <div class="w-2">邀请类别</div>
+            </li>
+            <li v-for="item in teamList.teamMember">
+                <div class="w-2 username">
+                    <img :src="item.userPhoto">
+                    <span v-text="item.userName | limitTo 4"></span>
+                </div>
+                <div class="w-2" v-text="item.makerLevel | makerDeji"></div>
+                <div class="w-2" v-text="item.level | levelFilter"></div>
+                <div class="w-2" v-text="item.monthlySellMoney | currency '¥'"></div>
+                <div class="w-2" v-text="item.level | refType item.refType"></div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- footer -->
+<link rel="stylesheet" href="../main/footer.html?__inline">
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/maker/js/team/team.js?__inline"></script>
+</body>
+</html>

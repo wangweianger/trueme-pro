@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>提现记录</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/maker/css/wallet/wallet.css?__inline"/>
+</head>
+<body class="bg-cc">
+<header>
+    <div class="m-header g-border-b">
+        <div class="header-left"><a href="javascript:void(0)" onclick="goBack();" class="back"></a></div>
+        提现记录
+    </div>
+</header>
+<div class="wrapper padding-wrapper-top" id="container">
+    <div class="record">
+        <h3 class="g-border-b">今日</h3>
+        <ul class="hide" id="record1">
+            <li class="g-border-b" v-for="item in todayDatas">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-7"><span v-text="item.withdrawMoney | currency '¥'"></span>
+                    <p v-text="item.applyTime"></p>
+                    <small v-text="'提现单号：'+item.withdrawNo"></small>
+                </div>
+                <div class="col-xs-3" v-text="item.state | stateFilter"></div>
+            </li>
+            <!-- dom -->
+            <div id="recordtop"></div>
+        </ul>
+    </div>
+    <div id="scrollTop"></div>
+    <div class="record">
+        <h3 class="g-border-b">更早</h3>
+        <ul class="hide" id="record2">
+            <li class="g-border-b" v-for="item in historyDatas">
+                <div class="col-xs-2"></div>
+                <div class="col-xs-7"><span v-text="item.withdrawMoney | currency '¥'"></span>
+                    <p v-text="item.applyTime"></p>
+                    <small v-text="'提现单号：'+item.withdrawNo"></small>
+                </div>
+                <div class="col-xs-3" v-text="item.state | stateFilter"></div>
+            </li>
+            <!-- dom -->
+            <div id="recordbottom"></div>
+        </ul>
+    </div>
+    <div id="scrollbottom"></div>
+</div>
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/common/js/main.js"></script>
+<script type="text/javascript" src="../../assets/maker/js/wallet/withdrawCashRecord.js?__inline"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<title>管理收货地址</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+<!-- 样式文件 -->
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css" />
+<!-- 内部样式 -->
+    <style>
+        html{background-color: #f0f0f0;}
+        #container{display: none;}
+
+        .list{overflow: hidden; background-color: #fff;}
+        .list li{position: relative; min-height: 1.4rem; box-sizing: border-box;}
+        .list li .info{display:block; padding: .35rem 0 .35rem .2rem; width: 6.46rem; font-size: .24rem; color: #000; box-sizing: border-box;}
+        .list li .info .user-address{ color: #737373; }
+        .list li .info .user-info .name, .list li .info .user-info .tel{margin-right: .3rem;}
+        .list li .info .user-info .default-tag{display: inline-block; background-color: #fd4a4a; font-size: .16rem; color: #fff; padding: 0 .04rem; text-align: center; vertical-align: top; margin-top: .06rem;}
+        .list li .edit-box{position: absolute; top:0; right:0; bottom:0; width: 1.04rem;}
+        .list li .edit-box .edit{position: absolute; top:50%; right: .38rem; margin-top: -.19rem; width: .38rem; height: .38rem; background: url('../../assets/trueme/images/order/edit_address.png') no-repeat 0 0; background-size: .38rem .38rem;}
+        .new-btn-box{ margin-top: .3rem; }
+        .new-btn-box .new-btn{display: block; width: 7.1rem; margin: 0 auto; height: .7rem; line-height: .7rem; font-size: .26rem; color: #fff; text-align: center; background-color: #fd4a4a; border-radius: .1rem;}
+    </style>
+
+<!-- 模板js文件 -->
+    <script src="../../assets/common/js/main.js"></script>
+
+</head>
+<body>
+	<div class="wrapper">
+        <div id="container">
+            <div class="header g-border-b">
+                <a class="header-back-box" href="javascript:void(0)" onclick="goBack();">
+                    <span class="header-back"></span>
+                </a>
+                管理收货地址
+            </div>
+            <ul class="list">
+                <li class="g-border-b" data-address-id="11" v-for="item in userAddress">
+                    <div class="info">
+                        <div class="user-info">
+                            <span class="name" v-text="item.linkman"></span>
+                            <span class="tel" v-text="item.phone"></span>
+                            <span class="default-tag" v-show="item.status">默认</span>
+                            <div class="user-address" v-text="item.province + item.city + item.area + item.address"></div>
+                        </div>
+                        <a href="" class=""></a>
+                    </div>
+                    <!-- <div class="select-box">
+                        <span class="select" v-bind:class="{'selected' : item.status }"></span>
+                    </div> -->
+                    <a class="edit-box" v-bind:href="'addressEdit.html?id=' + item.id">
+                        <span class="edit"></span>
+                    </a>
+                </li>
+            </ul>
+            <div class="new-btn-box">
+                <a class="new-btn" href="addressNew.html">新增收货地址</a>
+            </div>
+        </div>
+	</div>
+    <script>
+        var vm = new Vue({
+            el: '#container',
+            data: {
+                userAddress: []
+            },
+            ready: function(){
+                var that = this;
+                if(sessionStorage.getItem('saveAndUseAddress')){
+                    sessionStorage.removeItem('saveAndUseAddress');
+                }
+                $.AJAX({
+                    url: config.basePath + 'user/svuseraddress/getUserAddressList',
+                    success: function(o){
+                        that.userAddress = o.data.userAddressList;
+                        $('#container').show();
+                    }
+                });
+            },
+            methods: {
+
+            }
+        });
+    </script>
+</body>
+</html>

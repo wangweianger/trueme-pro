@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>个人中心</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <!-- 样式文件 -->
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/trueme/css/user/user.css?__inline"/>
+    <!-- 内部样式 -->
+    <style>
+        .wrapper{ position: relative; }
+        #container {display: none;}
+        .pop-header{margin: -25px -20px 0; padding-bottom: .2rem; height: .7rem; line-height: .7rem; text-align: center; font-size: .32rem; color: rgba(0,0,0,0.8);}
+        .pop-tel{height: 1.8rem; line-height: 1.8rem; margin-bottom: -20px; font-size: .3rem; color: #000;}
+        .contact-tel{display: inline-block; width: .32rem; height: .28rem; background: url('../../assets/trueme/images/order/contact_tel.png') no-repeat 0 0; background-size: cover; vertical-align: top; margin-top: .75rem; margin-right: .1rem;}
+        .user-list li{ position: relative;}
+        .user-list .arrow-right{position: absolute; top: 50%; right: .24rem; margin-top: -.12rem; width: .13rem; height: .24rem; background: url('../../assets/trueme/images/common/arrow_right.png') no-repeat 0 0; background-size: cover;}
+    </style>
+</head>
+<body class="bg-cc">
+<div class="wrapper">
+    <div id="container">
+        <!--<div class="m-header g-border-b">
+            &lt;!&ndash; <div class="header-right"> <a href="javascript:void(0)" onclick="goBack();" class="setting"></a> </div> &ndash;&gt;
+            我的家
+            <button id="appaButShare" class="indexShare hide" onclick="everyPageWeiXinShare({'isnotshareNow':false})"></button>
+        </div>-->
+        <!--user-box 未登陆：addClass('logout'); 登录时：removeClass('logout')-->
+        <div class="user-box logout">
+        <!-- <div class="user-box"> -->
+            <div class="user-img">
+                <a href="userMessage.html">
+                    <img v-bind:src="userInfo.userPhoto" alt="用户头像">
+                </a>
+                <p class="padding-vertical-sm" v-text="userInfo.nickName">用户昵称</p>
+            </div>
+            <div class="logout-box">
+                <p>关注你感兴趣的品牌<br> 第一时间发现更多新品、折扣</p>
+                <button type="button" class="btn btn-main" v-on:click="login">登录/注册</button>
+            </div>
+            <div class="user-box-nav">
+                <dl>
+                    <dt v-text="userInfo.contentCollectionNum || 0"></dt>
+                    <dd><a href="/maker/wenan/shoucangwenan.html">关注的内容</a></dd>
+                </dl>
+                <dl>
+                    <dt v-text="userInfo.gooodsCollectionNum || 0"></dt>
+                    <dd class="jumpCheck" data-link="userCollectBrand.html"><div>收藏的商品</div></dd>
+                </dl>
+            </div>
+        </div>
+        <div class="container my-order jumpCheck g-border-b" data-link="../order/myOrder.html#orderstates=0">
+            <div class="pull-left">我的订单</div>
+            <div class="pull-right my-order-r">查看全部订单</div>
+        </div>
+        <ul class="user-nav g-border-b">
+            <li class="jumpCheck" data-link="../order/myOrder.html#orderstates=1">
+                <div>
+                    <div class="icon dt1"></div>
+                    <div>待付款</div>
+                </div>
+            </li>
+            <li class="jumpCheck" data-link="../order/myOrder.html#orderstates=2">
+                <div>
+                    <div class="icon dt2"></div>
+                    <div>待发货</div>
+                </div>
+            </li>
+            <li class="jumpCheck" data-link="../order/myOrder.html#orderstates=3">
+                <div>
+                    <div class="icon dt3"></div>
+                    <div>待收货</div>
+                </div>
+            </li>
+        </ul>
+        <ul class="user-list">
+            <!-- <li class="g-border-b"><a href="userCoupon.html">我的优惠劵<span class="arrow-right"></span></a></li> -->
+            <li class="g-border-b"><a href="../../maker/index/index.html">升级创客<span class="arrow-right"></span></a></li>
+            <li class="jumpCheck g-border-b" data-link="../address/addressManage.html"><div>收货地址管理</div><span class="arrow-right"></span></li>
+            <li class="g-border-b" v-on:click="showService"><a href="javascript:void(0)">客服中心<span class="arrow-right"></span></a></li>
+            <li class="g-border-b"><a href="aboutUs.html">关于萃美<span class="arrow-right"></span></a></li>
+        </ul>
+        <!--底部菜单-->
+        <link rel="import" href="/trueme/main/footer.html?__inline">
+    </div>
+</div>
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/common/js/main.js"></script>
+<script type="text/javascript" src="../../assets/trueme/js/function/function.js"></script>
+<script type="text/javascript" src="../../assets/trueme/js/user/myHome.js?__inline"></script>
+</body>
+</html>

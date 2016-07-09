@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>提现申请</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/maker/css/wallet/withdrawCash.css?__inline"/>
+</head>
+<body class="bg-cc">
+<header>
+    <div class="m-header g-border-b">
+        <div class="header-left"><a href="javascript:void(0)" onclick="goBack();" class="back"></a></div>
+        提现申请
+    </div>
+</header>
+<div class="wrapper padding-wrapper-top hide" id="container">
+    <div class="wx-user g-border-b"><i></i><div class="pull-left"><p>微信账号</p> <span v-text="withCashNeedDadas.nickeName"></span></div></div>
+    <div class="wx-money g-border-b">
+        <span>转出金额</span> 
+        <i>¥</i>
+        <input type="tel" placeholder="本次可转出：{{withCashNeedDadas.usableMoney}}元" maxlength="10" v-model="money" id="focus" >
+    </div>
+    <div class="wx-msg g-border-b">
+        <p>当前提现用户较多,金额将会在3-7个工作日到账</p>
+        <p>每笔限额20000元，本月您还可以提现<span v-text="withCashNeedDadas.canUseCount"></span>次</p>
+    </div>
+    <div class="container padding-top">
+        <button :disabled="isDisabled" v-on:click="submitWithDrawCash" class="btn btn-main btn-block">确定提现</button>
+    </div>
+</div>
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/common/js/main.js"></script>
+<script type="text/javascript" src="../../assets/maker/js/wallet/withdrawCash.js?__inline"></script>
+</body>
+</html>

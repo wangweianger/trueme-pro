@@ -1,0 +1,89 @@
+@charset "UTF-8";
+@import url(../main/footer.css);
+.user-form { padding: 1rem .2rem; }
+.user-form label { display: block; position: relative; width: 100%; height: 1rem; margin-bottom: .3rem }
+.user-form label input { width: 100%; height: 100%; border: 1px solid #e0e0e0; border-radius: 1rem; padding-left: .4rem; }
+.user-form label span { position: absolute; top: .25rem; width: .5rem; height: .5rem; background: url('../../images/user/user1.png') no-repeat; z-index: 11 }
+.user-form label.area span { right: .4rem; background-position: -1.65rem center; background-size: 4rem auto; }
+.user-form label.phone span { top: 0; left: 0; width: 1.2rem; text-align: center; height: 100%; line-height: 1rem; background: none; border-right: 2px solid #e0e0e0; }
+.user-form label.phone input { padding-left: 1.5rem; }
+.user-form label.pass span { right: .4rem; width: .6rem; background-position: -2.39rem center; background-size: 3.9rem auto; }
+.user-form label.pass span.focus { background-position: right center !important; }
+.user-form label.code1 { float: left; width: 60%; }
+.user-form label.code1 span { background: none; }
+.user-form label.code2 { float: left; width: 40%; }
+.user-form label.code2 { float: right; width: 38%; }
+.btn-sub { display: block; width: 100%; height: 1rem; border: none; border-radius: 1rem; background-color: #fd4a4a; color: white; font-size: .35rem; }
+.btn-code { width: 100%; height: 1rem; line-height: 1rem; text-align: center; border: none; border-radius: 1rem; background-color: #f0f0f0; color: #b0b0b0; font-size: .3rem; }
+.user-form p a { display: block; margin-top: .2rem; font-size: 70%; }
+.wx { display: block; width: 100%; text-align: center; color: #666; }
+.wx span { display: inline-block; width: 1rem; height: 1rem; background: url("../../images/order/wechat_icon.png") no-repeat center; }
+.p-reg { color: #b0b0b0; padding-top: .5rem }
+.p-reg a { display: initial !important; font-size: 100% !important; color: #b0b0b0; text-decoration: underline; }
+/*my home*/
+.user-box { width: 100%; height: 3.8rem; padding-top: .3rem; background: url("../../images/user/myHome-bg1.png") no-repeat center; background-size: cover; }
+.user-box .user-img { display: block; position: relative; width: 100%; text-align: center; }
+/*.user-box .user-img a { display: block; position: absolute; top: .1rem; right: 1.5rem; width: .5rem; height: .5rem; background: url("../../images/user/icon-myhome.png") no-repeat left center; }*/
+.user-box .user-img img { display: inline-block; width: 1.3rem; height: 1.3rem; margin-top: .15rem; box-shadow: 0 0 0 .1rem rgba(255, 255, 255, .5); border-radius: 50%; }
+.user-box .user-img p { font-size: .3rem; color: #000; padding-top: .3rem; }
+.user-box .user-box-nav { width: 100%; height: 1rem; background-color: rgba(255, 255, 255, .2); border-top: 1px solid rgba(255, 255, 255, 0.3); }
+.user-box .user-box-nav dl { float: left; width: 50%; height: 100%; text-align: center; font-size: .3rem; color: #000; border-right: 1px solid rgba(0, 0, 0, 0.06); }
+.user-box .user-box-nav dl:last-child { border: none; }
+.user-box .user-box-nav dl a { color: #000; }
+.user-box .user-box-nav dl dt { margin-top: .1rem; line-height: 1 }
+.user-box.logout { background: url("../../images/user/myHome-bg2.png") no-repeat center; background-size: cover; }
+.user-box.logout .user-img, .user-box .logout-box { display: none; }
+.user-box.logout .logout-box { display: block; text-align: center; }
+.user-box.logout .logout-box p { margin-top: .5rem; color: #737373; font-size: 60% }
+.user-box.logout .logout-box button { padding: .2rem 1rem; margin: .2rem 0; }
+.my-order { width: 100%; height: .8rem; line-height: .8rem; color: #737373; background-color: white }
+.my-order .pull-left { font-size: .3rem; color: #737373; }
+.my-order .pull-right { display: inline-block; font-size: .26rem; color: #b4b4b4; }
+.my-order .my-order-r { padding-right: .3rem; background: url("../../images/common/arrow_right.png") no-repeat right center; background-size: .15rem auto; color: #b4b4b4 }
+.user-nav { display: table; width: 100%; height: 1.34rem; margin-bottom: .2rem; background-color: white; }
+.user-nav li { display: table-cell; text-align: center; font-size: .24rem; color: #737373; }
+.user-nav li .icon { display: inline-block; width: .6rem; height: .5rem; margin-top: .2rem; }
+.user-nav li .icon.dt1 { background: url("../../images/user/icon-myhome1.png") no-repeat center; background-size: .5rem auto }
+.user-nav li .icon.dt2 { background: url("../../images/user/icon-myhome2.png") no-repeat center; background-size: .55rem auto }
+.user-nav li .icon.dt3 { background: url("../../images/user/icon-myhome3.png") no-repeat center; background-size: .5rem auto }
+.user-list { background-color: white; }
+.user-list li { width: 100%; height: 1rem; padding: 0 .25rem; margin-bottom: .01rem; line-height: 1rem; font-size: .3rem; color: #737373; }
+.user-list li i { float: right; display: inline-block; width: .15rem; height: 1rem; background: url("../../images/common/arrow_right.png") no-repeat center; background-size: .15rem auto; }
+.user-list li a { display: block; width: 100%; height: 100%; color: #737373 }
+.user-list .logout .logout-btn { width: 100%; height: .8rem; line-height: .8rem; margin-top: .1rem; background-color: #fd4a4a; border-radius: .1rem; font-size: .3rem; color: #fff; text-align: center; }
+/*msg-list*/
+.msg-list { margin-top: .88rem; background-color: #fff; }
+.msg-list li { width: 100%; height: 1.05rem; line-height: 1.05rem; padding: 0 .25rem; color: #666; background-color: #fff; }
+.msg-list li.img { height: 1.36rem; line-height: 1.36rem; }
+.msg-list li.img .img { display: inline-block; width: 1rem; height: 1rem; margin-top: .18rem; text-align: center; border-radius: 50%; overflow: hidden; }
+.msg-list li.img .img img { max-width: 1rem; max-height: 1rem; vertical-align: inherit; }
+.msg-list li a { display: block; width: 100%; height: 100%; }
+/*nickname*/
+.nickname { position: relative; width: 100%; height: 1.05rem; padding: 0 .25rem; line-height: 1.05rem; background-color: #fff; }
+.nickname input { width: 100%; height: .8rem; border: none; }
+.nickname i { display: block; position: absolute; top: .2rem; right: .2rem; width: .6rem; height: .6rem; background: url("../../images/common/close.png") no-repeat center; background-size: .4rem; z-index: 10; }
+/*photo-list*/
+.photo-list { width: 110%; }
+.photo-list li { float: left; width: 2.25rem; height: 2.25rem; margin: .13rem .13rem 0 0; background-color: #b0b0b0; }
+.photo-list li.photo a { display: block; width: 100%; height: 100%; text-align: center; line-height: 3rem; background: #fd4a4a url("../../images/user/Photo.png") no-repeat center .5rem; background-size: 1rem; color: #fff; }
+/*follow-list*/
+.follow-list li { width: 100%; height: 1.7rem; padding: 0 .25rem; background-color: #fff; border-bottom: 1px solid #f0f0f0; }
+.follow-list li > .img { float: left; width: 1.1rem; line-height: 1.7rem; margin-right: .2rem; }
+.follow-list li > .img img { max-width: 1.1rem; }
+.follow-list li > .text { float: left; width: 4.5rem; margin-top: .5rem }
+.follow-list li > .right { float: right; width: 1rem; margin-top: .26rem; text-align: center; color: #737373; }
+.follow-list li > .right i { display: inline-block; width: 1rem; height: .5rem; background: url("../../images/order/order_select_icon.png") no-repeat bottom center; background-size: auto 1rem }
+.follow-list li.check > .right i { background-position-y: top; }
+.follow-msg { position: fixed; top: .88rem; left: 0; width: 100%; height: 100%; background: url("../../images/user/no_fiwi.png") no-repeat center 36%; background-size: 2rem auto; z-index: 110; }
+.follow-msg .follow-msg-box { position: fixed; top: 53%; left: 0; width: 100%; text-align: center; z-index: 111; color: #737373 }
+.no-brand { background: url("../../images/user/no_brand.png") no-repeat center 36%; background-size: 2rem auto; }
+/*collect-btn*/
+.collect-btn { width: 100%; height: 1.16rem; padding: .3rem .25rem; line-height: 1.16rem; background-color: #fff; border-bottom: 1px solid #f0f0f0 }
+.collect-btn li a { display: inline-block; float: left; padding: .15rem .25rem; margin: 0 .1rem .1rem 0; line-height: 1; border: 1px solid #939393; border-radius: .05rem; color: #737373; }
+.arrow_down { display: inline-block; width: .4rem; height: .2rem; background: url("../../images/common/arrow_down.png") no-repeat center; background-size: .35rem auto; }
+.collect-con { padding: 0 .15rem; margin-bottom: .2rem; background-color: #fff; overflow: hidden; }
+.collect-con li { float: left; margin: 0 .05rem .2rem; }
+.collect-con li .collect-img { overflow: hidden; }
+.collect-con li .collect-img img { display: block; width: 3.5rem; height: 3.5rem; }
+.collect-con li .text-truncate { margin-top: .06rem; padding: 0 .2rem; line-height: .52rem; text-align: center; font-size: .24rem; color: #000; max-width: 3.5rem; }
+.collect-con li .text-main { margin-bottom: .14rem; text-align: center; font-size: .24rem; color: #fd4a4a; }

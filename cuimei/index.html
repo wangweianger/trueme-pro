@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>萃美良品</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <script type="text/javascript" src="assets/common/js/resize.js?__inline"></script>
+    <!-- 样式文件 -->
+    <link rel="stylesheet" type="text/css" href="assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/common/css/swiper-3.3.1.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/trueme/css/index/index.css?__inline"/>
+    <!-- 内部样式 -->
+    <style type="text/css">
+        .pro_box:last-child { margin-right: .2rem; }
+        .nav-item { display: inline-block; padding: 0 .4rem; }
+        .fixed-bar-box { background-color: #fff; }   
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div id="container" class="visibility">
+         <!--导航栏 -->
+        <div class="header-outer" v-show="isShowNav" v-if="datas.itemHomeTypeList.length>1?true:false">
+            <div class="header" id="header-nav">
+                <div class="swiper-container nav-wrap">
+                    <div class="swiper-wrapper">
+                        <div v-for="item in datas.itemHomeTypeList" class="swiper-nav swiper-slide" v-on:click="getNavData(item.topTypeId)">
+                            <div class="nav-item">
+                                <span class="nav-menu" :class="item.topTypeId|addActive" v-text="item.showStr"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="appaButShare" class="indexShare hide" onclick="everyPageWeiXinShare({'isnotshareNow':false})"></button>
+                </div>
+            </div>
+        </div>
+        <!-- main -->
+        <div v-for="itemList in datas.modeList">
+            <!-- 搜索+banner -->
+            <div v-if="itemList.modeType==1" class="search-banner">
+                <!--搜索-->
+                <div class="search"><a href="trueme/search/search.html"><input type="text" placeholder="搜索全球精选商品"></a></div>
+                <!-- 头部banner -->
+                <div class="swiper-container swiper-container-horizontal banner-slide">
+                    <div class="swiper-wrapper">
+                        <div v-for="item in itemList.bannerList" class="swiper-slide">
+                            <a v-bind:href="item.linkUrl"><img v-bind:src="item.bannerImgUrl + '?imageView2/2/w/750/h/500'"/></a>
+                        </div>
+                    </div>
+                    <!-- 如果需要分页器 -->
+                    <div class="swiper-pagination swiper-pagination-bullets swiper-pagination_ball">
+                        <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
+                        <span class="swiper-pagination-bullet"></span>
+                        <span class="swiper-pagination-bullet"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- 热门进入栏 -->
+            <ul v-if="itemList.modeType==2&&itemList.quickRoot.length" class="nav-icon">
+                <li v-for="item in itemList.quickRoot">
+                    <a :href="item.linkUrl"><img :src="item.iconUrl|qiniuImgFilter 2 66 66">
+                        <p v-text="item.remark"></p></a>
+                </li>
+            </ul>
+            <!-- 各类专场推荐 -->
+            <div v-if="itemList.modeType==3" class="activity_wrap" v-for="topic in itemList.showCaseList">
+                <div class="activity_banner_wrap">
+                    <a v-bind:href="'/trueme/special/special.html?showCaseId='+ topic.showCaseInfo.showCaseId + '&topTypeId=' + topTypeId" class="activity_banner">
+                        <img v-bind:src="topic.showCaseInfo.spuHomeImgUrl + '?imageView2/2/w/750/h/500'">
+                    </a>
+                </div>
+                <div class="swiper-container swiper-container-horizontal activity_pro_wrap">
+                    <div class="swiper-wrapper pro_wrap">
+                        <a v-for="topicItem in topic.spuList" v-bind:href="'/trueme/ware/wareDetail.html?spuId='+ topicItem.spuId" class="swiper-slide pro_box">
+                            <div class="pro_inner">
+                                <div class="img">
+                                    <img v-bind:src="topicItem.imgMainUrl + '?imageView2/2/w/238/h/238'"/>
+                                </div>
+                                <div class="pro_name" v-text="topicItem.skuTitle"></div>
+                                <div class="pro_price"><i v-text="topicItem.salePrice | currency '¥'"></i></div>
+                            </div>
+                        </a>
+                        <a v-bind:href="'/trueme/special/special.html?showCaseId='+ topic.showCaseInfo.showCaseId + '&topTypeId=' + key" class="swiper-slide pro_box">
+                            <div class="img more g-border">
+                                <div class="more_con">
+                                    <div class="see_more">查看更多</div>
+                                    <div class="annotation">more</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- 单品推荐 -->
+            <div v-if="itemList.modeType==6" class="hot_wrap">
+                <!-- <div class="hot_tit">
+                    <span class="tit_con">单品推荐</span>
+                    <div class="line"></div>
+                </div> -->
+                <div class="pro_wrap g-border-b ">
+                    <div class="brand_tit">
+                        <img class="g-border" v-bind:src="itemList.hotSkuInfo.brandLogo + '?imageView2/2/w/120/h/120'"/>
+                        <div class="brand_name" v-text="itemList.hotSkuInfo.brandNameCn"></div>
+                    </div>
+                    <div class="hot_prowrap">
+                        <a v-bind:href="'/trueme/ware/wareDetail.html?spuId='+ itemList.hotSkuInfo.spuId" class="img">
+                            <img class="lazy" src="/assets/common/images/gods-default-icon.png" data-original="{{itemList.hotSkuInfo.imgMainUrl | qiniuImgFilter}}"/>
+                        </a>
+                        <div class="hot_protit" v-text="itemList.hotSkuInfo.skuTitle">
+                        </div>
+                        <div class="operation_btn">
+                            <div class="price g-border ">
+                                <span class="new"><i v-text="itemList.hotSkuInfo.salePrice | currency '¥'"></i></span>
+                                <span class="old"><i v-text="itemList.hotSkuInfo.markedPrice | currency '¥'"></i></span>
+                            </div>
+                            <div class="praise g-border" v-on:click="praise($event,$index,itemList.hotSkuInfo)">
+                                <span class="praise_icon" v-bind:class="[itemList.hotSkuInfo.collect ? 'praised' : '']"></span>
+                                <span class="praise_num" v-text="itemList.hotSkuInfo.collectNum"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--视频-->
+            <div v-if="itemList.modeType==4" class="video">
+                <video class="hide" data-index="{{$index}}" style="background-image:url('{{itemList.vidioContent.mainUrl}}');" :src="itemList.vidioContent.vedioUrl" controls="false" loop="true" preload="auto" webkit-playsinline="true" x-webkit-airplay="true"></video>
+                <div class="blur g-border-b"></div>
+                <div class="video-con">
+                    <div class="video-con-z">
+                        <a href="javascript:void(0)" v-on:click="goToWenAnUrl('video',itemList)">
+                        <div class="video-con-t g-border-b">
+                            <h1 v-text="itemList.vidioContent.title|limitTo 18"></h1>
+                            <h5 v-text="itemList.vidioContent.desc|limitTo 40"></h5>
+                        </div>
+                        </a>
+                        <div class="video-con-b">
+                            <!-- <span class="comment">10</span> -->
+                            <span class="zan" v-on:click="likeElectricity($event,itemList.vidioContent)" v-text="itemList.vidioContent.likeCount"></span>
+                            <span class="xin" :class="{'active':itemList.isCollect?true:false}" v-on:click="collectionwenan($event,'video',itemList)" v-text="itemList.collectCount"></span>
+                            <span class="zhuangfa" v-on:click="wenAnweixinShare('video',itemList)"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="video-mainimg">
+                    <a href="javascript:void(0)" v-on:click="goToWenAnUrl('video',itemList)"><div class="masker"></div></a>
+                    <div class="video-duration" v-text="itemList.duration"></div>
+                    <img :src="itemList.vidioContent.mainUrl"/>
+                    <div class="playIcon" v-on:click="videoAboutCaoZuo($event,itemList.vidioContent.mainUrl)"></div>
+                </div>
+            </div>
+            <!--图文文案-->
+            <div v-if="itemList.modeType==5" class="twwa">
+                <a href="javascript:void(0)" v-on:click="goToWenAnUrl('img',itemList)">
+                    <img :src="itemList.imgContent.mainUrl">
+                </a> 
+                <div class="twwa-con">
+                    <a href="javascript:void(0)" v-on:click="goToWenAnUrl('img',itemList)">
+                        <div class="twwa-con-t g-border-b" >
+                            <h1 v-text="itemList.imgContent.title | limitTo 20"></h1>
+                            <h5 v-text="itemList.imgContent.desc | limitTo 40"></h5>
+                        </div>
+                    </a>    
+                    <div class="twwa-con-b">
+                        <!-- <span class="comment">10</span> -->
+                        <span class="zan" v-on:click="likeElectricity($event,itemList.imgContent)" v-text="itemList.imgContent.likeCount"></span>
+                        <span class="xin" :class="{'active':itemList.isCollect?true:false}" v-on:click="collectionwenan($event,'img',itemList)" v-text="itemList.collectCount"></span>
+                        <span class="zhuangfa" v-on:click="wenAnweixinShare('img',itemList)"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 加载更多数据 -->
+        <div class="loading-box hide">
+            <span class="loading-img" v-if="loadingStatus==2"></span>
+            <span v-bind:class="['loading-text', loadingStatus==3 ? 'loading-end-line' : '']" v-text="loadingStatus | loadingStatusFilter"></span>
+        </div>
+        <!--底部菜单-->
+        <link rel="import" href="/trueme/main/footer.html?__inline">
+        <!-- 底部element -->
+        <div id='bottomscolltop'></div>
+    </div>
+</div>
+<!-- 分享图标 -->
+<div id="weixinShare" style="z-index:10001" class="share hide"></div>
+<!-- script -->
+<script src="assets/common/js/main.js"></script>
+<script src="assets/common/js/swiper-3.3.1.jquery.min.js"></script>
+<script src="assets/trueme/js/index/index.js?__inline"></script>
+</body>
+</html>

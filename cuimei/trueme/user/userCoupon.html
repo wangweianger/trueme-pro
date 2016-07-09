@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>优惠券</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <!-- 样式文件 -->
+    <style>
+        /*#container { display: none; }*/
+    </style>
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/trueme/css/user/coupon.css"/>
+    <!-- 内部样式 -->
+</head>
+<body class="bg-cc">
+<div class="wrapper padding-wrapper-top">
+    <div id="container">
+        <header class="g-border-b">
+            <div class="m-header">
+                <div class="header-left"><a href="javascript:void(0)" onclick="goBack();" class="back"></a></div>
+                优惠券
+            </div>
+        </header>
+    </div>
+    <ul class="cou-nav g-border-b">
+        <li class="active g-border-r"><span>可使用(<span>3</span>)</span></li>
+        <li class="g-border-r"><span>已使用(<span>2</span>)</span></li>
+        <li><span>已过期(<span>1</span>)</span></li>
+    </ul>
+    <div class="no-coupon hide">你暂时还没有优惠券哦</div>
+    <ul class="coupon-ul">
+        <li>
+            <div class="mon"><span>¥5</span><b class="g-border-r"></b></div>
+            <div class="con">
+                <h4>姚太太旗舰牛肉干优惠券</h4>
+                <p>满￥98使用</p>
+                <h5>使用期限：2016.2.1-2016.3.1</h5>
+            </div>
+            <div class="din">点击<br>了解</div>
+        </li>
+        <li class="active">
+            <div class="mon"><span>¥5</span><b class="g-border-r"></b></div>
+            <div class="con">
+                <h4>姚太太旗舰牛肉干优惠券</h4>
+                <p>满￥98使用</p>
+                <h5>使用期限：2016.2.1-2016.3.1</h5>
+            </div>
+            <div class="din">点击<br>了解</div>
+        </li>
+        <li class="shiyong">
+            <div class="mon"><span>¥5</span><b class="g-border-r"></b></div>
+            <div class="con">
+                <h4>姚太太旗舰牛肉干优惠券</h4>
+                <p>满￥98使用</p>
+                <h5>使用期限：2016.2.1-2016.3.1</h5>
+            </div>
+            <div class="din">点击<br>了解</div>
+        </li>
+        <li class="shixiao">
+            <div class="mon"><span>¥5</span><b class="g-border-r"></b></div>
+            <div class="con">
+                <h4>姚太太旗舰牛肉干优惠券</h4>
+                <p>满￥98使用</p>
+                <h5>使用期限：2016.2.1-2016.3.1</h5>
+            </div>
+            <div class="din">点击<br>了解</div>
+        </li>
+
+    </ul>
+</div>
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/common/js/jquery-2.1.4.min.js?__inline"></script>
+<script type="text/javascript" src="../../assets/common/js/main.js"></script>
+<script type="text/javascript" src="../../assets/trueme/js/function/function.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".cou-nav li").click(function () {
+            $(this).addClass("active").siblings().removeClass("active");
+        });
+    });
+    win.hideLoading();
+    var vm = new Vue({
+        el: '#container',
+        data: {
+            data: 0
+        },
+        ready: function () {
+//            this.getUserInfo();
+        },
+        methods: {
+//
+        }
+    });
+</script>
+</body>
+</html>

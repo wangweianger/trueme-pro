@@ -1,0 +1,39 @@
+
+<link rel="stylesheet" type="text/css" href="../../assets/maker/css/main/footer.css?__inline">
+<!-- html -->
+<footer>
+    <ul class="fixed-bar g-border-t">
+        <li><a href="/maker/index/index.html"><i class="ma1"></i><p>创客</p></a></li>
+        <li><a href="/maker/wenan/wenan.html#wenanstates=0"><i class="ma2"></i><p>内容</p></a></li>
+        <li><a href="/maker/team/team.html"><i class="ma3"></i><p>团队</p></a></li>
+    </ul>
+</footer>
+
+<script>
+    //首页底部导航增加active样式
+    $(function(){
+        var linkArr = ['/maker/index/index.html',['/maker/wenan/wenan.html','/maker/wenan/brandSearch.html'],'/maker/team/team.html'];
+        for(var i=0; i<linkArr.length; i++){
+            if(typeof(linkArr[i])=='object'){
+                for(var j=0; j<linkArr[i].length; j++){
+                    if(location.href.indexOf(linkArr[i][j]) > -1){
+                        $('.fixed-bar li').removeClass('active');
+                        $('.fixed-bar li').eq(i).addClass('active');
+                        $('.fixed-bar li').eq(i).on('click', function(){
+                            return false;
+                        })
+                    }
+                }
+            }else{
+                if(location.href.indexOf(linkArr[i]) > -1){
+                    $('.fixed-bar li').removeClass('active');
+                    $('.fixed-bar li').eq(i).addClass('active');
+                    $('.fixed-bar li').eq(i).on('click', function(){
+                        return false;
+                    })
+                }
+            };
+        };
+    });
+</script>
+

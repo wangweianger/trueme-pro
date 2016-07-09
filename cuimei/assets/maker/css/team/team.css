@@ -1,0 +1,16 @@
+.top-box { position: relative; height: 3rem; padding-top: .88rem; text-align: center; background: url("../../images/index/user-box-bg.png") no-repeat center; background-size: cover; }
+.top-box i { position: absolute; top: .25rem; right: .2rem; padding-left: .4rem; color: #aaa; font-size: .22rem; background: url("../../images/team/icon1.png") no-repeat left .05rem; background-size: .3rem; }
+.top-box h3 { margin-top: .5rem; color: #fff; font-size: .36rem; }
+.top-box span { display: inline-block; width: 2rem; height: .3rem; margin: 0 auto; line-height: .32rem; text-align: center; background-color: #f8dd44; color: #4a4a4a; font-size: .2rem; border-radius: .15rem; }
+.team-list { margin: .2rem 0; background-color: #fff; overflow: hidden; }
+.team-list li { position: relative; float: left; width: 2.5rem; height: 2.5rem; padding-top: .75rem; text-align: center; color: #4a4a4a; font-size: .26rem; }
+.team-list li i { display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; }
+.team-list li span { color: #fd4a4a; font-size: .4rem; }
+.team-users { padding: 0 .2rem .2rem; background-color: #fff; overflow: hidden; }
+.team-users .team-user-top { width: 100%; height: .6rem; margin-bottom: .2rem; line-height: .65rem; font-size: .24rem; color: #4a4a4a; }
+.team-users .team-user-top a { float: right; font-size: .24rem; color: #aaa; }
+.team-users ul li { padding: .05rem 0; font-size: .24rem; color: #aaa; text-align: center; overflow: hidden; }
+.team-users ul li.title { color: #4a4a4a; }
+.team-users ul li div.username img{width:.3rem;height:.3rem;border-radius: 100%;}
+.team-users ul li div.username{text-align: left;}
+.m-header .back { background: url("../../images/common/back-bei.png") no-repeat center; background-size: .2rem auto; }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>查看物流</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <!-- 样式文件 -->
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/trueme/css/order/orderDetails.css?__inline"/>
+    <!-- 内部样式 -->
+</head>
+<body class="bg-cc">
+<div class="wrapper" id="container">
+    <div class="m-header">
+        <div class="header-left"><a href="javascript:void(0)" onclick="goBack();" class="back"></a></div>
+        查看物流
+    </div>
+    <div class="tpl padding g-border-b">
+        <!-- <div class="img"><img _:src="orderWuLiu.src" alt="商品图片"></div> -->
+        <div class="right">
+            <div class="zt">
+                <span class="strong margin-right">物流状态</span>
+                <span v-if="orderStatus!=10" class="text-lv" v-text="orderWuLiu.status|wuLiuStatus"></span>
+                <span v-if="orderStatus==10" class="text-lv">已发货</span>
+            </div>
+            <div v-if="orderStatus!=10">
+                <div class="ztt">承运来源：<span v-text="orderWuLiu.com"></span></div>
+                <div class="ztt">运单编号：<span v-text="orderWuLiu.exnum"></span></div>
+                <div class="ztt">官方电话：<span class="text-lan" v-text="orderWuLiu.exprPhone"></span></div>
+            </div>
+        </div>
+    </div>
+    <div class="tpl-con padding g-border-t">
+        <ul class="tpl-con-box">
+            <li v-for="(index,item) in orderWuLiu.transList" class="g-border-b" :class="orderWuLiu.status|wuLiuFilter index" ><i></i> <span v-text="item.context"></span><br><span v-text="item.ftime"></span></li>
+            <li v-if="orderStatus==10" class='g-border-b on'><i></i>正通知快递公司揽件</li>
+        </ul>
+    </div>
+</div>
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+<script type="text/javascript" src="../../assets/common/js/main.js"></script>
+<script type="text/javascript" src="../../assets/trueme/js/function/function.js"></script>
+<script type="text/javascript" src="../../assets/trueme/js/order/checkWuLiu.js?__inline"></script>
+</body>
+</html>

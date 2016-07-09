@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<title>编辑收货地址</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <script type="text/javascript" src="/assets/common/js/resize.js?__inline"></script>
+    <!-- 样式文件 -->
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css" /> 
+    <!-- 内部样式 -->
+    <style>
+        html{background-color: #f0f0f0;}
+        #container{display: none;}
+
+        .edit-info{background-color: #fff; overflow: hidden;}
+        .edit-info li, .id-card-edit .edit-box{ padding: .1rem .2rem; height: .98rem; line-height: .98rem; box-sizing: border-box;}
+        .edit-info li .chooseAddrBox{display: inline-block; width: 100%; height: 100%; line-height: .78rem; vertical-align: top;}
+        .edit-box label{float: left; line-height: .78rem; margin-right: .2rem; font-size: .3rem; color: #737373;}
+        .edit-box .input-box{position: relative; height:.78rem; overflow: hidden;}
+        .edit-box .input-box .address-arrow{position: absolute; top:50%; right: 0; margin-top: -.12rem; width: .13rem; height: .24rem; background: url('../../assets/trueme/images/common/arrow_right.png') no-repeat 0 0; background-size: cover;}
+        .edit-box .input-box input{ width: 100%; height: 100%; border:none; vertical-align: top;}
+        /*.id-card-edit{background-color: #fff; overflow: hidden;}*/
+        /*.id-card-edit .id-card-des{ padding:0 .2rem; font-size: .18rem; color: #fd4a4a; height: .6rem; line-height: .6rem; background-color: #f0f0f0;}*/
+
+		.set-default{position: relative; padding: 0 .2rem; font-size: .24rem; color: #4a4a4a; height: 1.1rem; background-color: #fff; overflow: hidden;}
+        .set-default p{margin-top: .18rem; font-size: .26rem; color: #737373;}
+        .set-default .default-note{margin-top: .06rem; font-size: .22rem; color: #a6a6a6;}
+		.set-default .select-icon{position: absolute; top: 50%; right: .18rem; margin-top: -.2rem; width: .4rem; height: .4rem; background: url('../../assets/trueme/images/order/order_select_icon.png') no-repeat 0 -.4rem; background-size: .4rem .8rem;  }
+        .set-default .select-icon.selected{background-position: 0 0;}
+        .save-area{margin: .2rem .2rem .52rem;}
+        .save-area .save-btn{display:block; width: 100%; height: .7rem; line-height: .7rem; text-align: center; font-size: .26rem; color: #fff; border-radius:.1rem; background-color: #fd4a4a;}
+/*选择省市区弹层*/
+        .dialog{position: fixed; top:0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.3); z-index: 110; display: none;}
+        /*.dialog-addr{position: absolute; left:0; bottom: -100%; background-color: #fff; width: 100%; transition: bottom 20s; -webkit-transition: bottom 20s; -moz-transition: bottom .2s; -ms-transition: bottom .2s; -o-transition: bottom .2s;}*/
+        .dialog-addr{position: absolute; left:0; bottom: 0; background-color: #fff; width: 100%;}
+        .dialog-addr.canSee{bottom: 0;}
+        .addr-header{position: relative; height: .7rem; line-height: .7rem; text-align: center; font-size: .3rem; color: rgba(157,157,157,1);}
+        .addr-header span{position: absolute; top:0; right:0; width: .9rem; height:100%; font-size: .24rem; }
+        .addr-selected{height: .46rem; line-height: .46rem; font-size: .26rem; color: rgba(74,74,74,1); font-weight: bold;}
+        .addr-selected span{height: 100%; overflow: hidden; text-overflow: ellipsis;}
+        .addr-selected .province-selected{float:left; display: inline-block; margin-left: .82rem; width: 2.3rem;}
+        .addr-selected .city-selected{float:left; display: inline-block; width: 2.4rem;} 
+        .addr-selected .area-selected{float:left;}
+        .addr-box{overflow: hidden;}
+        .addr-box li{line-height: .74rem; height:.74rem; max-width: 100%; overflow: hidden; text-overflow: ellipsis; margin-top:.06rem; font-size: .26rem; color: rgba(74,74,74,1); cursor: pointer;}
+        .addr-box li span{display: none;}
+        .addr-box .selected{color: rgba(253,74,74,1);}
+        .addr-box .addr-province{float: left; display: inline-block; margin-left: .82rem; width: 2.3rem; max-height: 5rem; overflow: auto;}
+        .addr-box .addr-province::-webkit-scrollbar { width: 0px;}
+        .addr-box .addr-province::-webkit-scrollbar-thumb { background: #fff;}
+        .addr-box .addr-city{display: inline-block; width: 2.4rem; max-height: 5rem; overflow: auto; vertical-align: top;}
+        .addr-box .addr-city::-webkit-scrollbar { width: 0px;}
+        .addr-box .addr-city::-webkit-scrollbar-thumb { background: #fff;}
+        .addr-box .addr-area{ float: right; display: inline-block; width: 1.96rem; max-height: 5rem; vertical-align: top; overflow: auto;}
+        .addr-box .addr-area::-webkit-scrollbar { width: 0px;}
+        .addr-box .addr-area::-webkit-scrollbar-thumb { background: #fff;}
+    </style>
+
+<!-- 模板js文件 -->
+    <script src="../../assets/common/js/main.js"></script>
+
+</head>
+<body>
+	<div class="wrapper">
+        <div id="container">
+            <div class="header g-border-b">
+                <a class="header-back-box" onclick="goBack()">
+                    <span class="header-back"></span>
+                </a>
+                编辑收货地址
+                <div class="header-delete" v-on:click="addrDelete">删除</div>
+            </div>
+            <ul class="edit-info">
+                <li class="edit-box g-border-b">
+                    <label for="userName">收件人真实姓名</label>
+                    <div class="input-box">
+                        <input type="text" name="userName" autocomplete="true" v-bind:value="userAddress.linkman" />
+                    </div>
+                </li>
+                <li class="edit-box g-border-b">
+                    <label for="userTel">手机号</label>
+                    <div class="input-box">
+                        <input type="tel" name="userTel" autocomplete="true" maxlength="11" v-bind:value="userAddress.phone" />
+                    </div>
+                </li>
+                <li v-on:click="chooseAddr" class="edit-box g-border-b">
+                    <!-- <a href="addAddress.html"> -->
+                        <label>所在地区</label>
+                        <div class="input-box">
+                            <div class="chooseAddrBox" name="userAddressMain" v-text="userAddressBefore"></div>
+                            <span class="address-arrow"></span>
+                            <input type="hidden" name="province" v-bind:value="userAddress.province" />
+                            <input type="hidden" name="city" v-bind:value="userAddress.city" />
+                            <input type="hidden" name="area" v-bind:value="userAddress.area" />
+                        </div>
+                    <!-- </a> -->
+                </li>
+                <li class="edit-box g-border-b">
+                    <label for="userName">详细地址</label>
+                    <div class="input-box">
+                        <input type="text" name="userAddressDetail" autocomplete="true" placeholder="街道、楼牌号等" v-bind:value="userAddress.address" />
+                    </div>
+                </li>
+            </ul>
+            <div class="set-default" v-on:click="setDefault">
+                <p>设为默认地址</p>
+                <span class="default-note">注：每次下单时会使用该地址</span>
+            	<span class="select-icon" v-bind:class="{'selected' : userAddress.status}"></span>
+            </div>
+            <div class="save-area" v-on:click="submit">
+                <div class="save-btn" v-text="saveAndUse ? '保存并使用' : '保存'"></div>
+            </div>
+
+            <div class="dialog">
+                <div class="dialog-addr">
+                    <div class="addr-header">所在地区<span v-on:click="writeAddress">确定</span></div>
+                    <div class="addr-selected g-border-b">
+                        <span class="province-selected">北京市</span>
+                        <span class="city-selected">北京市</span>
+                        <span class="area-selected">东城区</span>
+                    </div>
+                    <div class="addr-box">
+                        <ul class="addr-province" id="s1">
+                            <li v-for="(index, provinceItem) in province" data-id="{{ index }}" v-text="provinceItem"></li>
+                        </ul>
+                        <ul class="addr-city" id="s2"></ul>
+                        <ul class="addr-area" id="s3"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+    <script>
+        var vm = new Vue({
+            el: '#container',
+            data: {
+                userAddress: [],
+                userAddressBefore: '',
+                saveAndUse: false,
+                province: ["北京市", "天津市", "上海市", "重庆市", "河北省", "山西省", "内蒙古", "辽宁省", "吉林省", "黑龙江省", "江苏省", "浙江省", "安徽省", "福建省", "江西省", "山东省", "河南省", "湖北省", "湖南省", "广东省", "广西", "海南省", "四川省", "贵州省", "云南省", "西藏", "陕西省", "甘肃省", "青海省", "宁夏", "新疆", "香港", "澳门", "台湾省"]
+            },
+            ready: function(){
+                var that = this;
+                if(sessionStorage.getItem('saveAndUseAddress')){
+                    that.saveAndUse = true;
+                }
+                $('#container').show();
+                var id = getQueryString('id');
+                $.AJAX({
+                    url: config.basePath + 'user/svuseraddress/getUserAddressById?id=' + id,
+                    success: function(o){
+                        that.userAddress = o.data.userAddress;
+                        that.userAddressBefore = o.data.userAddress.province + o.data.userAddress.city + o.data.userAddress.area;
+                        // debugger;
+                    }
+                });
+            },
+            methods: {
+                chooseAddr: function(e){
+                    e.preventDefault();
+                    $('.dialog').show();
+                    // $('.dialog .dialog-addr').css('bottom', 0);
+                    $(document).on('click', '.dialog', function(e){
+                        // $(this).find('.dialog-addr').css('bottom','');
+                        $(this).hide();
+                    })
+                    $('body').on('click', '.dialog-addr', function(e){
+                        e.stopPropagation();
+                    });
+                },
+                writeAddress: function(){
+                    $('input[type="hidden"][name="province"]').val($('.province-selected').text());
+                    $('input[type="hidden"][name="city"]').val($('.city-selected').text());
+                    $('input[type="hidden"][name="area"]').val($('.area-selected').text());
+                    var addr_main = "";
+                    if($('.province-selected').text() == $('.city-selected').text()){
+                        addr_main = $('.city-selected').text() + $('.area-selected').text();
+                    }else{
+                        addr_main = $('.province-selected').text() + $('.city-selected').text() + $('.area-selected').text();
+                    }
+                    $('div[name="userAddressMain"]').text(addr_main);
+                    $('.dialog').hide();
+                },
+                setDefault: function(){
+                    var that = this;
+                    if(that.userAddress.status ==1){
+                        return false;
+                    }
+                	$('.set-default .select-icon').toggleClass('selected');
+                },
+                submit: function(){
+                    var that = this;
+                    var userName = $.trim($('input[name="userName"]').val());
+                    if(userName == ""){
+                        Popup.alert({type:'msg',style:'width:80%',title:'名字不能为空!'});
+                        return false;
+                    }
+                    var userTel = $.trim($('input[name="userTel"]').val());
+                    // if(userTel == ""){
+                    //     Popup.alert({'type':'msg', 'haveHeader':false, 'title':'联系方式不能为空'});
+                    // }
+                    if(!regCombination('m').test(userTel)){
+                        Popup.alert({'type':'msg', 'haveHeader':false, 'title':'手机号码格式不对'});
+                        return false;
+                    }
+                    var userAddressDetail = $.trim($('input[name="userAddressDetail"]').val());
+                    if(userAddressDetail == ""){
+                        Popup.alert({'type':'msg', 'haveHeader':false, 'title':'详细地址不能为空'});
+                        return false;
+                    }
+                    var userAddressMain = $.trim($('div[name="userAddressMain"]').text());
+                    if(userAddressMain == ""){
+                        Popup.alert({'type':'msg', 'haveHeader':false, 'title':'所在地区不能为空'});
+                        return false;
+                    }
+                    var userProvince = $.trim($('input[type="hidden"][name="province"]').val());
+                    var userCity = $.trim($('input[type="hidden"][name="city"]').val());
+                    var userArea = $.trim($('input[type="hidden"][name="area"]').val());
+                    var param = {};
+                    param.id = parseInt(getQueryString('id'));
+                    param.province = userProvince;
+                    param.cardId = '';
+                    param.city = userCity;
+                    param.area = userArea;
+                    param.address = userAddressDetail;
+                    param.linkman = userName;
+                    param.status = $('.select-icon').hasClass('selected') ? 1 : 0;
+                    param.phone = userTel;
+                    // param = encodeURIComponent(jsonToGetUrl(param));
+                    param = JSON.stringify(param);
+                    // param = decodeURI(param);
+                    // param = jsonToGetUrl(param);
+                    // param = param.serializeArray();
+                    console.log(typeof(param));
+                    url = config.basePath + 'user/svuseraddress/editUserAddress?param=' + param;
+                    url = decodeURIComponent(url);
+                    console.log(url);
+                    $.AJAX({
+                        type: "POST",
+                        // url: config.basePath + '/svuser/addAddress',
+                        url: url,
+                        success: function(o){
+                            if(that.saveAndUse){
+                                sessionStorage.removeItem('saveAndUseAddress');
+                                location.href = "../order/confirmOrder.html?id=" + getQueryString('id');
+                            }else{
+                                location.href = 'addressManage.html';
+                            }
+                        }
+                    })
+                },
+                addrDelete: function(){
+                    var that = this;
+                    var id = getQueryString('id');
+                    Popup.confirm({
+                        type:'msg',
+                        title:'确认删除地址吗？',
+                        yes:function(){
+                            $.AJAX({
+                                type: "POST",
+                                url: config.basePath + "user/svuseraddress/deleteUserAddress?id=" + id,
+                                success: function(o){
+                                    if(that.saveAndUse){
+                                        sessionStorage.removeItem('saveAndUseAddress');
+                                        // history.replaceState(null, "haha", "addressList.html");
+                                        // location.replace('addressList.html');
+                                        location.href = 'addressList.html';
+                                    }else{
+                                        location.replace('addressManage.html');
+                                    }
+                                }
+                            });
+                        },
+                    });
+                    
+                }
+            }
+        });
+    </script>
+    <script type="text/javascript" src="../../assets/trueme/js/address/Address.js"></script>
+</body>
+</html>

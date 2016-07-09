@@ -1,0 +1,12 @@
+/*main.css*/
+
+/*浏览器重写*/
+@import url('reset.css?__inline'); 
+
+/*bootstrap-mini*/
+@import url('bootstrap-mini.css?__inline'); 
+
+/*弹出层样式*/
+@import url('../js/Popup/layer-mobile.css?__inline'); 
+
+  

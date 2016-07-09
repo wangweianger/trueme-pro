@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>选择您的导师</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/maker/css/invite/invite.css?__inline"/>
+</head>
+<body>
+<header>
+    <div class="m-header g-border-b">
+        <div class="header-left"><a href="javascript:void(0)" onclick="goBack();" class="back"></a></div>
+        选择您的导师
+    </div>
+</header>
+<div id="inviteReferrer" class="hide">
+    <div class="inviteReferrer-bg"></div>
+    <div class="inviteReferrer-box">
+        <h3 class="g-border-b">选择您的导师</h3>
+        <ul>
+            <!--<li class="g-border-b" :class="{'active':$index==0}" v-on:click="checkMaster($event,item.masterCode)" v-for="item in sugList">
+                <span v-text="item.nickeName"></span> 
+                <i></i>
+            </li>-->
+            <li :class="{'active':$index==0}" v-on:click="checkMaster($event,item.masterCode)" v-for="item in datas">
+                <div class="checked"></div>
+                <div class="wx-img"><img :src="item.userPhoto|qiniuImgFilter 2 100 100"></div>
+                <div class="con g-border-b">
+                    <p class="name" v-text="item.nickeName"></p>
+                    <p>团队人数：<span v-text="item.teamCount"></span>人</p>
+                    <p>销售额：<span v-text="item.monthlySaleFee | currency '¥'"></span>/月</p>
+                    <div v-if="item.phone" class="icon tel"><a href="tel:{{item.phone}}"></a></div>
+                    <div v-if="item.phone" class="icon email"><a href="sms:{{item.phone}}"></a></div>
+                </div>
+            </li>
+        </ul>
+        <div class="hyb" v-on:click="anotherMasters">换一批（<span v-text="index+1"></span>）</div>
+        <button type="button" v-on:click="lockMaster">确定</button>
+    </div>
+</div>
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+<script type="text/javascript" src="../../assets/common/js/main.js"></script>
+<script type="text/javascript" src="../../assets/maker/js/invite/inviteVerifyOrder.js?__inline"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+/*phone-binding.css*/
+.orderPayment { }
+.orderPayment .top { width: 100%; height: 3rem; background: #fff; }
+.orderPayment .top .time { width: 2.8rem; height: 0.5rem; padding-top: 0.9rem; margin: 0 auto; clear: both; }
+.orderPayment .top .time div { float: left; }
+.orderPayment .top .time .t { width: 0.5rem; height: 0.58rem; background: #4a4a4a; border-radius: 5px; margin-right: 2px; color: #fff; line-height: 0.585rem; text-align: center; }
+.orderPayment .top .time .m { font-size: 18px; color: #4a4a4a; margin: 0 0.18rem; }
+.orderPayment .top .pay30 { margin-top: 0.5rem; text-align: center; clear: both; }
+.orderPayment .center { margin-top: 0.2rem; background: #fff; overflow: hidden; }
+.orderPayment .center .tit { padding: 0 0.2rem; height: 0.8rem; border-bottom: solid 1px #e0e0e0; line-height: 0.8rem; position: relative; }
+.orderPayment .center .tit .pull-right { padding-right: 0.4rem; }
+.orderPayment .center .tit span#slide { display: block; position: absolute; right: 0.2rem; top: 0.2rem; width: 0.4rem; height: 0.4rem; background-image: url('../../images/common/arrow_up.png'); background-repeat: no-repeat; background-position: center right; background-size: 80%; }
+.orderPayment .center .paylist { overflow: hidden; }
+.orderPayment .center .paylist li { position: relative; height: 0.98rem; line-height: 0.98rem; padding: 0 0.2rem; }
+.orderPayment .center .paylist li img { width: 0.4rem; margin-right: 0.15rem; }
+.orderPayment .center .checko { position: absolute; right: 0.2rem; width: 0.4rem; height: 0.4rem; top: 0.3rem; background: #ccc; border-radius: 100%; background: url('../../images/order/order_select_icon.png') no-repeat; background-position: 0 -0.4rem; background-size: 100%; }
+.orderPayment .center .active { background-position: 0 0; }
+.orderPayment .bottom { position: fixed; left: 0; bottom: 0.2rem; width: 100%; padding: 0.2rem; }
+.orderPayment .bottom button { display: block; width: 100%; height: 0.75rem; }

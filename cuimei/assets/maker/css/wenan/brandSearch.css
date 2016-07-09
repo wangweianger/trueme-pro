@@ -1,0 +1,61 @@
+.wrapper {
+    padding-top: .88rem;
+    padding-bottom: 1rem;
+}
+.search-input {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 7.5rem;
+    height: .88rem;
+    margin: 0 auto;
+    padding: 0 .4rem;
+    background-color: #fff;
+}
+.search-input input {
+    width: 100%;
+    height: .6rem;
+    padding-left: .55rem;
+    margin-top: .14rem;
+    border: none;
+    border-radius: 1rem;
+    background: #f0f0f0 url("/assets/maker/images/common/search.png") no-repeat .2rem center;
+    background-size: .26rem .26rem;
+    font-size: .24rem;
+}
+.side-nav {
+    position: fixed;
+    top: .9rem;
+    right: 0;
+    bottom: 1.54rem;
+    width: .55rem;
+}
+.nav-abc {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+.nav-abc li {
+    display: table-row;
+    width: .55rem;
+    font-size: .22rem;
+    color: #e0e0e0;
+    text-align: center;
+}
+.search-box ul {
+    overflow: hidden;
+}
+.search-box ul li {
+    width: 100%;
+    height: .7rem;
+    padding: 0 .2rem;
+    line-height: .71rem;
+    font-size: .26rem;
+    color: #4a4a4a;
+}
+.search-box ul li:first-child {
+    background-color: #f0f0f0;
+    color: #fd4a4a;
+}
+

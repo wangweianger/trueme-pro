@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>首页</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+<!-- 样式文件 -->
+    <link rel="stylesheet" type="text/css" href="../../assets/trueme/css/main/base.css" /> 
+<!-- 内部样式 -->
+    <style>
+        html{background-color: #f2f2f2;}
+        #container{display: none;}
+        .header{position: relative; height:.7rem; line-height:.7rem; text-align:center; font-size: .36rem; color:#2c2c2c; background-color: #fff;}
+        .header .header-edit{position: absolute; top: 0; right:.36rem; font-size:.34rem;}
+        .popUpBg{position:fixed; top:0; left:0; right:0; bottom:0; background-color: rgba(0,0,0,0.4); max-width:7.5rem; margin: 0 auto;}
+        .popUpBg .popUp{position:absolute; left:0; right:0; bottom:-100%; padding-top:.3rem; height:7rem; background-color:#fff; transition: bottom .2s linear; -webkit-transition: bottom .2s linear; -moz-transition: bottom .2s; -o-transition: bottom .2s; -ms-transition: bottom .2s;}
+        .popUp .input-box{display:block;margin:.2rem .2rem 0;}
+        .popUp .input-box input{border:none; width:100%; height:.8rem; background-color:#ebebeb; padding-left:.2rem; border-radius:.04rem;}
+        .popUp .login-btn{height:.8rem; margin:.2rem .2rem 0; background-color:#9d9d9d; border-radius:.06rem; text-align:center; line-height:.8rem; font-size:.28rem; color:#fff;}
+        .popUp .pop-info{margin-top:.16rem; padding:0 .2rem; font-size:.24rem; color:#000;}
+        .popUp .pop-info .register{float: right;}
+
+    </style>
+
+<!-- 模板js文件 -->
+    
+
+    <script type="text/javascript" src="../../assets/common/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../assets/common/js/T.js"></script>
+    <script type="text/javascript" src="../../assets/common/js/vue.min.js"></script>
+</head>
+<body>
+	<div class="wrapper">
+        <div id="container">
+            <div class="header">
+                <span class="back-arrow"></span>
+                <span class="header-title">购物车({{ xixi }})</span>
+                <span class="header-edit">编辑</span>
+            </div>
+            <input type="button" value="111" v-on:click="click" />
+            <div class="popUpBg" v-show="popShow" v-on:click="popHide">
+                <div class="popUp" v-on:click="prevent">
+                    <div class="input-box">
+                        <input type="text" placeholder="账号" />
+                    </div>
+                    <div class="input-box">
+                        <input type="text" placeholder="密码" />
+                    </div>
+                    <div class="login-btn">登陆</div>
+                    <div class="pop-info">
+                        <span class="forget">忘记密码</span>
+                        <span class="register">没有账号？现在注册&gt;&gt;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+    <script type="text/javascript">
+        var myVue = new Vue({
+            el: '#container',
+            data: {
+                popShow: false
+            },
+            ready: function(){
+                $('#container').css('display','block');
+            },
+            methods: {
+                click: function(){
+                    var that = this;
+                    that.popShow = true;
+                    setTimeout(function(){
+                        $('.popUp').css('bottom',0);
+                    },0);
+                },
+                popHide: function(){
+                    var that = this;
+                    that.popShow = false;
+                    $('.popUp').css('bottom','');
+                },
+                prevent: function(e){
+                    e.stopPropagation();
+                }
+            }
+        });
+    </script>
+</body>
+</html>

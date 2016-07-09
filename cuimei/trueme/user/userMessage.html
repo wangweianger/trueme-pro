@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>个人信息</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <!-- 样式文件 -->
+    <style>
+        #container{display: none;}
+        .msg-list .arrow-right{display: inline-block; width: .13rem; height: .24rem; background: url("../../assets/trueme/images/common/arrow_right.png") no-repeat right center; background-size: cover; vertical-align: top; margin-top: .4rem; margin-left: .2rem;}
+        /**/
+        .idCardDialog{position: fixed; top:0; left: 0; right: 0; bottom: 0; z-index: 10001; background-color: rgba(0,0,0,0.4); display: none;}
+        .idCardBox{position: absolute; top:50%; left: 0; right: 0; width: 6rem; margin: -2.23rem auto 0;}
+        .idCardBox .idCardTitle{ width: 100%; height: .7rem; line-height: .7rem; text-align: center; font-size: .26rem; color: #fff; background-color: #61d61a; border-top-left-radius: .1rem; border-top-right-radius: .1rem;}
+        .idCardMain{padding: .5rem .2rem .2rem; background-color: #fff; overflow: hidden;}
+        .idCardMain p{margin-top: .12rem; font-size: .24rem; color: #010101;}
+        .idCardMain label{ font-size: .28rem; color: #000; }
+        .idCardMain .idCardNote{height: .44rem; line-height: .44rem; margin-left: 1rem; font-size: .22rem; color: #fd4a4a;}
+        .idCardMain .idCardName{ margin-top: .24rem; height: .6rem; line-height: .6rem; }
+        @media screen and (min-width: 380px){
+            .idCardMain .idCardName input, .idCardMain .idCardNum input{ width: 4.46rem; height: .56rem; margin-left: .04rem; padding-left: .1rem; border: .02rem solid #aaaaaa; vertical-align: top; border-radius: .06rem;}
+        }
+        @media screen and (max-width: 380px){
+            .idCardMain .idCardName input, .idCardMain .idCardNum input{ width: 4.46rem; height: .56rem; margin-left: .04rem; padding-left: .1rem; border: 1px solid #aaaaaa; vertical-align: top; border-radius: .06rem;}
+        }
+        .idCardBtn{ margin-top: .24rem; text-align: right; }
+        .idCardBtn button{display: inline-block; width: 1.3rem; height: .6rem; box-sizing: border-box; text-align: center; line-height: .6rem;}
+        .idCardBtn .cancelBtn{ border-color: #808080; border-radius: .1rem;}
+        .idCardBtn .cancelBtn:before{ border-color: #808080; border-radius: .1rem;}
+        .idCardBtn .doBtn{ border-radius: .1rem; color: #fff;}
+        .idCardBtn .canNotSubmit{background-color: #ccc;}
+        .idCardBtn .canSubmit{background-color: #61d61a;}
+    </style>
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css"/>
+    <link rel="stylesheet" type="text/css" href="../../assets/trueme/css/user/user.css"/>
+    <!-- 内部样式 -->
+</head>
+<body class="bg-cc padding-bottom-xl">
+<div class="wrapper">
+    <div id="container">
+        <header class="g-border-b">
+            <div class="m-header">
+                <div class="header-left"><a href="javascript:void(0)" onclick="goBack();" class="back"></a></div>
+                个人信息
+            </div>
+        </header>
+
+        <ul class="msg-list">
+            <li class="img g-border-b">
+                <!-- <a href="userPhoto.html"> -->
+                <a href="javascript:void(0)">
+                <span class="pull-left">头像</span>
+                <div class="pull-right img"><img v-bind:src="userInfo.userPhoto || '../../assets/trueme/images/user/user.png'" alt="user"></div></a>
+            </li>
+            <li class="g-border-b">
+                <!-- <a href="userEditNickname.html"> -->
+                <a href="javascript:void(0)">
+                    <div class="pull-left">昵称</div>
+                    <div class="pull-right" v-text="userInfo.nickName"></div>
+                </a>
+            </li>
+            <li class="bindPhone bindPhoneNumber g-border-b">
+                <a href="javascript:void(0)">
+                    <div class="pull-left">手机绑定</div>
+                    <div class="pull-right" v-if="userInfo.phone" v-text="userInfo.phone"></div>
+                    <div class="pull-right" v-if="!userInfo.phone">去设置<span class="arrow-right"></span></div>
+                </a>
+            </li>
+            <li class="bindPhone g-border-b">
+                <a href="javascript:void(0)">
+                    <div class="pull-left">身份证号码</div>
+                    <div class="pull-right" v-on:click="modifyIdNumber"><span v-text="cardId"></span><span class="arrow-right"></span></div>
+                </a>
+            </li>
+            <li class="g-border-b" v-on:click="logout">
+                退出登陆
+            </li>
+        </ul>
+        <div class="idCardDialog">
+            <div class="idCardBox">
+                <div class="idCardTitle">身份认证</div>
+                <div class="idCardMain">
+                    <p>据海关要求，本订单商品需对收货人身份信息进行认证，认证成功才可正常清关</p>
+                    <div class="idCardName">
+                        <label for="cardName">收货人</label>
+                        <input type="text" name="cardName" v-model="idCardName" v-on:keyUp="checkIdCard" maxlength="10"/>
+                    </div>
+                    <div class="idCardNote">收货人姓名要与身份证姓名一致</div>
+                    <div class="idCardNum">
+                        <label for="cardNum">身份证</label>
+                        <input type="text" name="cardNum" v-model="idCardNum" v-on:keyUp="checkIdCard" maxlength="18"/>
+                    </div>
+                    <div class="idCardBtn">
+                        <button class="cancelBtn g-border" v-on:click="cancelIdCard">取消</button>
+                        <button class="doBtn canNotSubmit" :disabled="isSubmit" v-on:click="submitIdCard">提交认证</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 模板js文件 -->
+<script type="text/javascript" src="../../assets/common/js/jquery-2.1.4.min.js?__inline"></script>
+<script type="text/javascript" src="../../assets/common/js/main.js"></script>
+<script type="text/javascript" src="../../assets/trueme/js/function/function.js"></script>
+<script>
+var vm = new Vue({
+    el: '#container',
+    data: {
+        userInfo: {},
+        idCardNum:"", //身份证
+        idCardName:"", //姓名
+        isSubmit:true,
+        cardId:'实名认证',
+    },
+    ready: function () {
+        this.getUserInfo();
+    },
+    methods: {
+        getUserInfo:function(){
+           var that = this;
+            $.AJAX({
+                type: "POST",
+                url: config.basePath + 'user/svuser/personalinfo',
+                success: function(o){
+                    o.data.personalinfo.phone = o.data.personalinfo.phone ? asterisk(o.data.personalinfo.phone, 3, 4) : '';
+                    that.userInfo = o.data.personalinfo;
+                    //显示身份证号码 
+                    if(o.data.personalinfo.cardId){
+                        that.cardId=asterisk(o.data.personalinfo.cardId, 6, 8);
+                    };
+                    //初始的身份证号
+                    if(o.data.personalinfo.cardId){that.idCardNum=o.data.personalinfo.cardId};
+                    if(o.data.personalinfo.realName){that.idCardName=o.data.personalinfo.realName};
+                    $('#container').show();
+                    if(!o.data.personalinfo.phone){
+                        $('.bindPhoneNumber').on('click', function(){
+                            trueme.w.getUserInfor({
+                                success:function(data){
+                                    if(parseInt(data.data.isBindPhone)){
+                                        //已经绑定手机 跳转到上一页面或者首页
+                                        window.location.href=config.prevUrl;
+                                    }else{
+                                        //没有绑定手机 跳转到绑定手机页面
+                                        window.location.href=window.location.origin+'/trueme/bindPhone/phoneBinding.html';
+                                    }
+                                }
+                            });
+                        });
+                    };
+                }
+            }); 
+        },
+
+        //点击弹出层
+        modifyIdNumber:function(){
+            $('div.idCardDialog').show();
+        },
+
+        //取消身份证弹出层
+        cancelIdCard:function(){
+            $('div.idCardDialog').hide();
+        },
+
+        //监听输入身份证的合法性
+        checkIdCard:function(){
+            if(regCombination('id').test(vm.idCardNum)&&regCombination('*').test(vm.idCardName)){
+                $('button.doBtn').addClass('canSubmit').removeClass('canNotSubmit');
+                vm.isSubmit=false;
+            }else{
+                $('button.doBtn').addClass('canNotSubmit').removeClass('canSubmit');
+                vm.isSubmit=true;
+            }
+        },
+
+        //修改身份证
+        submitIdCard:function(){
+            if(!regCombination('*').test(vm.idCardName)){
+                Popup.alert({type:'msg',title:"请输入正确的姓名！"});return false;
+            };
+            if(!regCombination('id').test(vm.idCardNum)){
+                Popup.alert({type:'msg',title:"请输入正确的身份证号码！"});return false;
+            };
+            $.AJAX({
+                type:"post",
+                url:config.basePath + 'user/svuser/addCardId',
+                data:{
+                    realName:vm.idCardName,
+                    cardId:vm.idCardNum,
+                },
+                success:function(data){
+                    //取消身份证弹出层
+                    vm.cancelIdCard();
+                    vm.getUserInfo();
+                    Popup.alert({type:'msg',title:"操作成功！"});
+                },
+            });
+        },
+
+        //登出
+        logout: function(){
+            Popup.confirm({
+                type: 'msg',
+                title: '确定退出？',
+                yes: function(){
+                    win.showLoading();
+                    $.AJAX({
+                        type: "POST",
+                        url: config.basePath + 'user/svloginout',
+                        success: function(){
+                            localStorage.setItem('weiXinShareIdCode',"");
+                            location.href = 'myHome.html';
+                        }
+                    });
+                }
+            });
+        },
+    }
+});
+</script>
+</body>
+</html>

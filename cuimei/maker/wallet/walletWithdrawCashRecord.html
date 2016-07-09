@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>提现记录</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <script type="text/javascript" src="../../assets/common/js/resize.js?__inline"></script>
+    <link rel="stylesheet" type="text/css" href="../../assets/common/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/maker/css/wallet/wallet.css?__inline"/>
+</head>
+
+<body class="bg-cc">
+    <header>
+        <div class="m-header g-border-b">
+            <div class="header-left">
+                <a href="javascript:void(0)" onclick="goBack();" class="back"></a>
+            </div>
+            提现记录
+        </div>
+    </header>
+    <div class="wrapper padding-wrapper-top wrappertab" id="container">
+        <div class="title g-border-b ">
+            <h3 class="wartab col-xs-6 g-border-r"><span>今日</span></h3>
+            <h3 class="wartab col-xs-6"><span>更早</span></h3>
+        </div>
+        <div class="record">
+            <ul v-show="datas.length" class="hide" id="tabul">
+                <li class="g-border-b" v-for="item in datas">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-7"><span v-text="item.withdrawMoney | currency '¥'"></span>
+                        <p v-text="item.applyTime"></p>
+                        <small v-text="'提现单号：'+item.withdrawNo"></small>
+                    </div>
+                    <div class="col-xs-3" v-text="item.state | stateFilter"></div>
+                </li>
+            </ul>
+        </div>
+        <!-- 数据为空时提示 -->
+        <div v-show="!datas.length" class="text-center common-size"><p>没有相关的数据~</p></div>
+        <!-- 加载更多数据 -->
+        <div class="loading-box hide">
+            <span class="loading-img" v-if="loadingStatus==2"></span>
+            <span class="loading-text" v-text="loadingStatus | loadingStatusFilter"></span>
+        </div>
+        <!-- dom -->
+        <div id="bottomscolltop"></div>
+    </div>
+    <!-- 模板js文件 -->
+    <script type="text/javascript" src="../../assets/common/js/main.js"></script>
+    <script type="text/javascript" src="../../assets/trueme/js/function/function.js"></script>
+    <script type="text/javascript" src="../../assets/maker/js/wallet/withdrawCashRecord.js?__inline"></script>
+</body>
+
+</html>
